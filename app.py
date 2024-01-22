@@ -11,4 +11,4 @@ app.register_blueprint(electoral_committee)
 
 if __name__ == "__main__":
     #app.run()
-    app.run(debug=True, host='192.168.0.7', port=9323)
+    app.run(debug=True)
