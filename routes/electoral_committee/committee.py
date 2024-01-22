@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash, session
+from flask import Blueprint, render_template, redirect, url_for, flash, session
 from .forms import Login
 from mocks.committee import get_user
 
@@ -39,5 +39,4 @@ def profile():
 @electoral_committee.route('/logout')
 def logout():
     session.pop('ci', None)
-    session.pop('name', None)
     return redirect(url_for('electoral_committee.login'))
