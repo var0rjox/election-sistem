@@ -3,5 +3,5 @@ content %}
 <h1>Home Page</h1>
 <p>Welcome to the home page</p>
 <a href="/user">User info</a>
-<a href="/election_results">Elections-results info</a>
+<a href="{{url_for("election_results.index")}}">Elections-results info</a>
 {% endblock %}
