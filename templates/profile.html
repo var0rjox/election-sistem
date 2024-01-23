@@ -1,0 +1,21 @@
+{% extends "base.html"%}
+{% block title %}Perfil-Elector{% endblock %}
+{% block content %}
+<div class="container p-3">
+    <div class="container">
+        <div>
+            <img src="" alt="image-elector">
+            <p>CI: {{ elector.ci }}</p>
+        </div>
+        <div>
+            <p>Nombre: {{ elector.name }}</p>
+            <p>Fecha de Nacimiento: {{ elector.datBir }}</p>
+            <p class="text-success">Estado: Habilitado</p>
+            <p>Genero: {{ elector.gender }}</p>
+        </div>
+    </div>
+    <div class="container">
+        <button>Emitir Voto</button>
+    </div>
+</div>
+{% endblock %}
