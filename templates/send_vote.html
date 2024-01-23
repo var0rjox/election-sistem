@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Emitir voto{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Lista de candidatos: Presidente</h1>
+    <form action="/submit_vote" method="post">
+        <div class="row">
+            {% for candidate in candidates %}
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card" style="width: 15rem;">
+                        <img class="card-img-top" src="{{ candidate.img }}" alt="{{ candidate.political_front_name }}">
+                        <div class="card-body">
+                            <h3 class="card-title">{{ "Frente electoral: " + candidate.political_front_name }}</h3>
+                            <h6 class="card-text">{{ "Presidente: " + candidate.president }}</h6>
+                            <p class="card-text">{{candidate.description}}</p>
+                            <div class="text-center">
+                                <input class="form-check-input-lg" type="radio" name="selected_candidate" value="{{ candidate.political_front_name }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="text-center">    
+                <label class="form-check-label" for="null">Nulo</label>
+                <input class="form-check-input-lg" type="radio" name="selected_candidate" value="null">
+
+                <label class="form-check-label" for="blank">Blanco</label>
+                <input class="form-check-input-lg" type="radio" name="selected_candidate" value="blank">
+        </div>
+        <div class="text-center">
+            <button class="btn btn-primary mt-3" type="submit">Votar</button>
+        </div>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="alert alert-success mt-3" role="alert">
+                    {{ messages[0] }}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </form>
+</div>
+{% endblock %}
