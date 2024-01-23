@@ -1,8 +1,8 @@
 from models.user import User
 
 users_committee = [
-  User('12345678', 'pequeñita'),
-  User('87654321', 'pequeñito'),
+  User('12345678', 'esther'),
+  User('87654321', 'gabriel'),
 ]
 
 def get_user(ci):
