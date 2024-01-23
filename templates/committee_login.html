@@ -39,11 +39,9 @@ Comite Electoral
 
       {% with messages =  get_flashed_messages() %}
         {% if messages %}
-          {% for message in messages %}
-            <div class="alert alert-danger mt-3" role="alert">
-              {{ message }}
-            </div>
-          {% endfor %}
+          <div class="alert alert-danger mt-3" role="alert">
+            {{ messages[0] }}
+          </div>
         {% endif %}
       {% endwith %}
     </form>
