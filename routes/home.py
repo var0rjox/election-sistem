@@ -50,7 +50,7 @@ def login():
     return render_template("voter-login.html", form=form)
 
 
-@home.route("/voter-profile")
+@home.route("/perfil-votante")
 def voter_profile():
     if "ci" not in session:
         flash("Debe iniciar sesión para poder votar", "danger")
