@@ -1,12 +1,19 @@
 {% extends "base.html"%}
 {% block title %}Perfil-Elector{% endblock %}
 {% block content %}
+
+<style>
+    .avatar {
+        width: 200px;
+        height: 200px;
+    }
+</style>
 <div class="container mt-4">
     <div class="row mt-3 align-items-center">
         <!-- Columna izquierda con la imagen y CI -->
-        <div class="col-6 mt-3 align-items-center">
+        <div class="col-6 mt-3 align-items-center text-center">
             <div class="mt-2 m-2">
-                <img src="../static/images/image-profile.png" class="img-thumbnail rounded w-400 h-400" alt="image-elector">
+                <img src="../static/images/image-profile.png" class="img-thumbnail avatar rounded" alt="image-elector">
             </div>
             <div class="mt-2 m-2">
                 <p>CI: {{ voter.ci }}</p>
@@ -14,16 +21,30 @@
         </div>
         <!-- Columna derecha con la información del votante -->
         <div class="col-6 mt-3">
-            <p>Nombre: {{ voter.name }}</p>
-            <p>Fecha de Nacimiento: {{ voter.datBir }}</p>
-            <p class="text-success">Estado: Habilitado</p>
-            <p>Genero: {{ voter.gender }}</p>
+            <table>
+                <tr>
+                    <td>Nombre:</td>
+                    <td>{{ voter.name }}</td>
+                </tr>
+                <tr>
+                    <td>Fecha:</td>
+                    <td>{{ voter.datBir }}</td>
+                </tr>
+                <tr>
+                    <td>Estado:</td>
+                    <td class="text-success">Habilitado</td>
+                </tr>
+                <tr>
+                    <td>Genero:</td>
+                    <td>{{ voter.gender }}</td>
+                </tr>
+            </table>
         </div>
     </div>
     <!-- Fila para el botón de Emitir Voto -->
     {% if voter.status == True %} 
     <div class="row justify-content-center">
-        <form action="/send_vote/" method="POST"> 
+        <form action="/send_vote/" method="POST" class="text-center"> 
             <button class="btn btn-lg btn-primary mt-3">Emitir Voto</button>
         </form>
     </div>
