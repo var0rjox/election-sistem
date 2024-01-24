@@ -1,7 +1,7 @@
 from flask import Flask
 from routes.home import home
 from routes.user import user
-from routes.electoral_committee.committee import electoral_committee
+from routes.committee import electoral_committee
 
 app = Flask(__name__)
 
