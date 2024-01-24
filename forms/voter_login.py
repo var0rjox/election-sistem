@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, DateField, SubmitField, ValidationError
+from wtforms import PasswordField, DateField, SubmitField
 from wtforms.validators import InputRequired, Length
 
 from utils.validate_adult import validate_adult

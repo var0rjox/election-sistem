@@ -1,12 +1,11 @@
-from flask import Blueprint, request, session, render_template, redirect, url_for, flash
-
-# from time import strptime
+from flask import Blueprint, session, render_template, redirect, url_for, flash
 
 from forms.voter_login import VoterLogin
-
-# from utils.is_legal_age import is_legal_age
+from services.voters_service import VotersServices
 
 home = Blueprint("home", __name__)
+
+votersService = VotersServices()
 
 
 @home.route("/", methods=["GET", "POST"])
@@ -26,26 +25,29 @@ def login():
 
     if is_form_valid:
         ci = form.ci.data
-        user = True
+        user = votersService.get_single_voter(ci)
+        birdate_match = user.birthdate == form.birthdate.data
 
-        if user:
-            # TODO: If already voted then redirect to login
-            if False:
-                flash(
-                    "Usted no esta habilitado para votar, debido a que ya ejerció su derecho al voto",
-                    "danger",
-                )
-                return redirect(url_for("home.login"))
+        if not birdate_match:
+            flash("La fecha de nacimiento no coincide", "danger")
+            return redirect(url_for("home.login"))
 
-            session["ci"] = ci
-            return redirect(url_for("home.voter_profile"))
-
-        else:
+        if not user:
             flash(
                 "El número de cédula no está registrado en el padrón electoral",
                 "danger",
             )
             return redirect(url_for("home.login"))
+
+        if not user.is_enabled:
+            flash(
+                "Usted no está habilitado para votar, debido a que ya ejerció su derecho al voto",
+                "danger",
+            )
+            return redirect(url_for("home.login"))
+
+        session["ci"] = ci
+        return redirect(url_for("home.voter_profile"))
 
     return render_template("voter-login.html", form=form)
 
