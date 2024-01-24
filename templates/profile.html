@@ -21,8 +21,15 @@
         </div>
     </div>
     <!-- Fila para el botón de Emitir Voto -->
+    {% if voter.status == True %} 
     <div class="row justify-content-center">
-        <button class="btn btn-lg btn-primary mt-3">Emitir Voto</button>
+        <form action="/send_vote/" method="POST"> 
+            <button class="btn btn-lg btn-primary mt-3">Emitir Voto</button>
+        </form>
     </div>
+    {% else %} 
+        <p>No puedes votar porque tu estado es: {{ voter.status }}</p> 
+    {% endif %} 
+    
 </div>
 {% endblock %}
