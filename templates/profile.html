@@ -2,22 +2,22 @@
 {% block title %}Perfil-Elector{% endblock %}
 {% block content %}
 <div class="container mt-4">
-    <div class="row mt-3 align-items-center">
+    <div class="row align-items-center">
         <!-- Columna izquierda con la imagen y CI -->
-        <div class="col-6 mt-3 align-items-center">
-            <div class="mt-2 m-2">
-                <img src="../static/images/image-profile.png" class="img-thumbnail rounded w-400 h-400" alt="image-elector">
+        <div class="col-6 mt-3 text-center">
+            <div class="col">
+                <img src="../static/images/image-profile.png" class="img-thumbnail rounded imgP" alt="image-elector">
             </div>
-            <div class="mt-2 m-2">
-                <p>CI: {{ voter.ci }}</p>
+            <div class="col text-center mt-2">
+                <p class="display-6">CI: {{ voter.ci }}</p>
             </div>
         </div>
         <!-- Columna derecha con la información del votante -->
         <div class="col-6 mt-3">
-            <p>Nombre: {{ voter.name }}</p>
-            <p>Fecha de Nacimiento: {{ voter.datBir }}</p>
-            <p class="text-success">Estado: Habilitado</p>
-            <p>Genero: {{ voter.gender }}</p>
+            <p class="lead">Nombre: {{ voter.name }}</p>
+            <p class="lead">Fecha de Nacimiento: {{ voter.datBir }}</p>
+            <p class="lead text-success">Estado: Habilitado</p>
+            <p class="lead">Genero: {{ voter.gender }}</p>
         </div>
     </div>
     <!-- Fila para el botón de Emitir Voto -->
