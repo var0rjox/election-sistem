@@ -1,28 +1,67 @@
 {% extends "base.html"%}
 {% block title %}Perfil-Elector{% endblock %}
 {% block content %}
-<div class="container mt-4">
-    <div class="row align-items-center">
-        <!-- Columna izquierda con la imagen y CI -->
-        <div class="col-6 mt-3 text-center">
-            <div class="col">
-                <img src="../static/images/image-profile.png" class="img-thumbnail rounded imgP" alt="image-elector">
+
+<style>
+    .avatar {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+    }
+</style>
+<div class="container-fluid d-flex flex-column justify-content-center align-items-center">
+    <header class = "w-100 py-4 text-center">
+        <h1>Perfil-Elector</h1>
+    </header>
+
+    <div class="container my-4 p-4 bg-light w-100 shadow" style="max-width: 800px;">
+        <div class="row align-items-center">
+            <!-- Columna izquierda con la imagen y CI -->
+            <article class="col-6 d-flex justify-content-center flex-column text-center h-100">
+                <figure>
+                    <img src="../static/images/image-profile.png" class="avatar" alt="image-elector">
+                </figure>
+
+                <div class="mt-1">
+                    <p>
+                        <span class="lead">
+                            CI:
+                        </span>
+                         {{ voter.ci }}</p>
+                </div>
+            </article>
+            <!-- Columna derecha con la información del votante -->
+            <div class="col-6 d-flex justify-content-center h-100">
+                <table>
+                    <tr>
+                        <td class="lead">Nombre:</td>
+                        <td>{{ voter.name }}</td>
+                    </tr>
+                    <tr>
+                        <td class="lead">Fecha:</td>
+                        <td>{{ voter.datBir }}</td>
+                    </tr>
+                    <tr>
+                        <td class="lead">Estado:</td>
+                        <td class="text-success">Habilitado</td>
+                    </tr>
+                    <tr>
+                        <td class="lead">Genero:</td>
+                        <td>{{ voter.gender }}</td>
+                    </tr>
+                </table>
             </div>
-            <div class="col text-center mt-2">
-                <p class="display-6">CI: {{ voter.ci }}</p>
-            </div>
+        
+        <!-- Fila para el botón de Emitir Voto -->
         </div>
-        <!-- Columna derecha con la información del votante -->
-        <div class="col-6 mt-3">
-            <p class="lead">Nombre: {{ voter.name }}</p>
-            <p class="lead">Fecha de Nacimiento: {{ voter.datBir }}</p>
-            <p class="lead text-success">Estado: Habilitado</p>
-            <p class="lead">Genero: {{ voter.gender }}</p>
+        {% if voter.status == True %} 
+        <div class="row d-flex justify-content-center">
+            <a href="/send_vote/" class="btn btn-lg btn-primary mt-3" style="max-width: 500px;">Emitir Voto</a>
         </div>
-    </div>
-    <!-- Fila para el botón de Emitir Voto -->
-    <div class="row justify-content-center">
-        <button class="btn btn-lg btn-primary mt-3">Emitir Voto</button>
-    </div>
+        {% else %} 
+            <p>No puedes votar porque tu estado es: {{ voter.status }}</p> 
+        {% endif %} 
+            
+        
+        {% endblock %}
 </div>
-{% endblock %}
