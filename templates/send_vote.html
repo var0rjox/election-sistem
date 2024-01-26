@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block title %}Emitir voto{% endblock %}
 {% block content %}
-<div class="container">
-    <h1 class="text-center">Lista de candidatos: Presidente</h1>
+<h1 class="text-center">Lista de candidatos: Presidente</h1>
+<div class="container mt-5 ">
     <form action="/submit_vote" method="post">
         <div class="row">
             {% for candidate in candidates %}
@@ -22,22 +22,74 @@
             {% endfor %}
         </div>
         <div class="text-center">    
-                <label class="form-check-label" for="null">Nulo</label>
-                <input class="form-check-input-lg" type="radio" name="selected_candidate" value="null">
+            <label class="form-check-label" for="null">Nulo</label>
+            <input class="form-check-input-lg" type="radio" name="selected_candidate" value="Nulo">
 
-                <label class="form-check-label" for="blank">Blanco</label>
-                <input class="form-check-input-lg" type="radio" name="selected_candidate" value="blank">
+            <label class="form-check-label" for="blank">Blanco</label>
+            <input class="form-check-input-lg" type="radio" name="selected_candidate" value="Blanco">
         </div>
-        <div class="text-center">
-            <button class="btn btn-primary mt-3" type="submit">Votar</button>
+
+        <div class="text-center ">
+            <button id="btn-vote" type="button" class="text-center btn btn-primary m-3" >                
+                Votar
+            </button>
         </div>
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                <ul class="alert alert-success mt-3" role="alert">
-                    {{ messages[0] }}
-                </ul>
-            {% endif %}
-        {% endwith %}
+        
+        <!-- Modal -->
+        <div class="modal fade" id="modal_alert" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Mensaje</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="content-modal-body">
+                        <!-- content in script -->
+                    </div>
+                    <div class="modal-footer" id="content-modal-footer">
+                        <!-- content in script-->
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
+
+    <script>
+        const btn_vote = document.getElementById("btn-vote");
+        btn_vote.addEventListener("click", () => {
+            let radios = document.getElementsByName("selected_candidate");
+            let is_any_radio_selected = false;
+            let selected_candidate = '';
+            
+            // Check if any radio button is selected 
+            for (let i = 0; i < radios.length && !is_any_radio_selected; i++){
+                if(radios[i].checked) {
+                    is_any_radio_selected = true;
+                    selected_candidate = radios[i].value;
+                }
+            }
+
+            let modal_body_message = '';
+            let modal_buttons = '';
+
+            if (!is_any_radio_selected) {
+                modal_body_message = "Seleccione un candidato";
+                modal_buttons = `<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Aceptar</button>`;
+            } else {
+                modal_body_message = `¿Esta seguro de seleccionar a <b>${selected_candidate}</b> para votar?`;
+                modal_buttons = `
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                `;
+            }  
+
+            document.getElementById("content-modal-body").innerHTML = modal_body_message
+            document.getElementById("content-modal-footer").innerHTML = modal_buttons
+            
+            // Show modal
+            var myModal = new bootstrap.Modal(document.getElementById('modal_alert'));
+            myModal.show();
+        });
+    </script>
 </div>
 {% endblock %}
