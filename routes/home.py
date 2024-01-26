@@ -1,5 +1,6 @@
 from flask import Blueprint, session, render_template, redirect, url_for, flash
 
+
 from forms.voter_login import VoterLogin
 from services.voters_service import VotersServices
 
@@ -26,11 +27,6 @@ def login():
     if is_form_valid:
         ci = form.ci.data
         user = votersService.get_single_voter(ci)
-        birdate_match = user.birthdate == form.birthdate.data
-
-        if not birdate_match:
-            flash("La fecha de nacimiento no coincide", "danger")
-            return redirect(url_for("home.login"))
 
         if not user:
             flash(
@@ -38,6 +34,13 @@ def login():
                 "danger",
             )
             return redirect(url_for("home.login"))
+
+        birdate_match = user.birthdate == form.birthdate.data
+
+        if not birdate_match:
+            flash("La fecha de nacimiento no coincide", "danger")
+            return redirect(url_for("home.login"))
+
 
         if not user.is_enabled:
             flash(
