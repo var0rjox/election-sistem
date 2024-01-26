@@ -56,8 +56,7 @@ def voter_profile_controller():
         flash("Debe iniciar sesión para poder votar", "danger")
         return redirect(url_for("home.login"))
     else:
-        ci = session["ci"]
-        return render_template("voter-profile.html", ci=ci)
+        return redirect(url_for("voter.index"))
 
 
 def voter_logout_controller():
