@@ -6,15 +6,15 @@
     <form action="/submit_vote" method="post">
         <div class="row">
             {% for candidate in candidates %}
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card" style="width: 15rem;">
+                <div class="col-lg-3 col-md-6 mb-4" onclick="select_card_candidate()">
+                    <div class="card candidate-card" style="width: 15rem;" data-candidate="{{ candidate.president }}">
                         <img class="card-img-top" src="{{ candidate.img }}" alt="{{ candidate.political_front_name }}">
                         <div class="card-body">
                             <h3 class="card-title">{{ "Frente electoral: " + candidate.political_front_name }}</h3>
                             <h6 class="card-text">{{ "Presidente: " + candidate.president }}</h6>
                             <p class="card-text">{{candidate.description}}</p>
                             <div class="text-center">
-                                <input class="form-check-input-lg" type="radio" name="selected_candidate" value="{{ candidate.political_front_name }}">
+                                <input id="{{candidate.president}}" class="form-check-input-lg" type="radio" name="selected_candidate" value="{{ candidate.political_front_name }}">
                             </div>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
 
             if (!is_any_radio_selected) {
                 modal_body_message = "Seleccione un candidato";
-                modal_buttons = `<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Aceptar</button>`;
+                modal_buttons = `<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>`;
             } else {
                 modal_body_message = `¿Esta seguro de seleccionar a <b>${selected_candidate}</b> para votar?`;
                 modal_buttons = `
@@ -89,6 +89,17 @@
             // Show modal
             var myModal = new bootstrap.Modal(document.getElementById('modal_alert'));
             myModal.show();
+        });
+        
+        document.addEventListener("DOMContentLoaded", () => {
+            var candidateCards = document.querySelectorAll('.candidate-card');
+
+            candidateCards.forEach((card) => {
+                card.addEventListener("click", () => {
+                    var candidateId = card.getAttribute('data-candidate');
+                    document.getElementById(candidateId).checked = true;
+                });
+            });
         });
     </script>
 </div>

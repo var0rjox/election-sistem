@@ -1,5 +1,7 @@
 from flask import Blueprint, redirect, render_template, url_for
 
+# import time
+
 send_vote = Blueprint("send_vote", __name__)
 
 candidates = [
@@ -41,4 +43,6 @@ def vote():
 
 @send_vote.route("/submit_vote", methods=["POST"])
 def submit_vote():
-    return redirect(url_for("home.index"))
+    # for i in range(2, 0, -1):
+    #     time.sleep(1)
+    return redirect(url_for("home.voter_logout"))
