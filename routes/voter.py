@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template
 from models.voter import Voter
 
-voter = Blueprint('voter', __name__, url_prefix="/voter-perfil")
+voter = Blueprint('voter', __name__, url_prefix="/perfil-elector")
 
 @voter.route('/')
 def index():

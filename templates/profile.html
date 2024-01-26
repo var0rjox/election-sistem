@@ -55,7 +55,7 @@
         </div>
         {% if voter.status == True %} 
         <div class="row d-flex justify-content-center">
-            <a href="/send_vote/" class="btn btn-lg btn-primary mt-3" style="max-width: 500px;">Emitir Voto</a>
+            <a href="{{url_for('vote.index')}}" class="btn btn-lg btn-primary mt-3" style="max-width: 500px;">Emitir Voto</a>
         </div>
         {% else %} 
             <p>No puedes votar porque tu estado es: {{ voter.status }}</p> 
