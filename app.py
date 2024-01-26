@@ -6,6 +6,8 @@ from routes.vote import vote
 
 app = Flask(__name__)
 
+app.secret_key='mysecretkey'
+
 app.register_blueprint(home)
 app.register_blueprint(user)
 app.register_blueprint(voter)

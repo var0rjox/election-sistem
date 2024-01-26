@@ -42,7 +42,7 @@
                     </tr>
                     <tr>
                         <td class="lead">Estado:</td>
-                        {% if voter.status %}
+                        {% if voter.is_enabled %}
                             <td class="text-success">Habilitado</td>
                         {% else %}
                             <td class="text-danger">Inhabilitado</td>
@@ -57,7 +57,7 @@
         
         <!-- Fila para el botón de Emitir Voto -->
         </div>
-        {% if voter.status %} 
+        {% if voter.is_enabled %} 
         <div class="row d-flex justify-content-center">
             <a href="{{url_for('vote.index')}}" class="btn btn-lg btn-primary mt-3" style="max-width: 500px;">Emitir Voto</a>
         </div>
