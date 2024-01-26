@@ -28,13 +28,13 @@ def login_controller():
     if "ci" in session:
         return redirect(url_for("electoral_committee.profile"))
 
-    return render_template("committee_login.html", form=form)
+    return render_template("committee-login.html", form=form)
 
 
 def profile_controller():
     if "ci" not in session:
         return redirect(url_for("electoral_committee.login"))
-    return render_template("committee_profile.html")
+    return render_template("committee-profile.html")
 
 
 def logout_controller():
