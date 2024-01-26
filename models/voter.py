@@ -1,7 +1,8 @@
 class Voter:
-    def __init__(self, ci, name, datBir, status, gender):
+    def __init__(self, ci, name, birthdate, status, gender, photo):
         self.ci = ci
         self.name = name
-        self.datBir = datBir
+        self.birthdate = birthdate
         self.status = status
         self.gender = gender
+        self.photo = photo

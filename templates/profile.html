@@ -13,7 +13,6 @@
     <header class = "w-100 py-4 text-center">
         <h1>Perfil-Elector</h1>
     </header>
-
     <div class="container my-4 p-4 bg-light w-100 shadow" style="max-width: 800px;">
         <div class="row align-items-center">
             <!-- Columna izquierda con la imagen y CI -->
@@ -39,7 +38,7 @@
                     </tr>
                     <tr>
                         <td class="lead">Fecha:</td>
-                        <td>{{ voter.datBir }}</td>
+                        <td>{{ voter.birthdate }}</td>
                     </tr>
                     <tr>
                         <td class="lead">Estado:</td>
@@ -60,8 +59,7 @@
         </div>
         {% else %} 
             <p>No puedes votar porque tu estado es: {{ voter.status }}</p> 
-        {% endif %} 
-            
-        
-        {% endblock %}
+        {% endif %}            
+    </div>
 </div>
+{% endblock %}
