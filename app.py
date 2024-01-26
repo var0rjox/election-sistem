@@ -4,6 +4,8 @@ from routes.user import user
 
 app = Flask(__name__)
 
+app.secret_key='mysecretkey'
+
 app.register_blueprint(home)
 app.register_blueprint(user)
 
