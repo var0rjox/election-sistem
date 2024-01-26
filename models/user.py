@@ -1,4 +1,4 @@
 class User:
-    def __init__(self, username, password):
-        self.username = username
+    def __init__(self, ci, password):
+        self.ci = ci
         self.password = password

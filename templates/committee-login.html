@@ -1,0 +1,70 @@
+{% extends 'base-auth.html' %}
+
+{% block title %}
+Comite Electoral
+{% endblock %}
+
+{% block content_auth %}
+  <div class="container d-flex flex-column align-items-center mt-5">
+    <h1>Inicio de Sesión - Comite Electoral</h1>
+
+    <form class="mx-auto my-4 p-4 bg-light w-100 shadow" style="max-width: 600px;" action="" method="post">
+      {{ form.hidden_tag() }}
+
+      <div class="row mb-4">
+          <div class="col-md-4">
+              {{ form.ci.label(class = "form-label") }}
+          </div>
+
+          <div class="col-md-8">
+              {{ form.ci(class = "form-control") }}
+          </div>
+      </div>
+
+      <div class="row mb-4">
+          <div class="col-md-4">
+              {{ form.password.label(class = "form-label") }}
+          </div>
+
+          <div class="col-md-8">
+              {{ form.password(class = "form-control") }}
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col text-center">
+              {{ form.submit(class = "btn btn-primary px-5") }}
+          </div>
+      </div>
+
+      {% with messages =  get_flashed_messages() %}
+        {% if messages %}
+          <div class="alert alert-danger mt-3" role="alert">
+            {{ messages[0] }}
+          </div>
+        {% endif %}
+      {% endwith %}
+    </form>
+  </div>
+
+  <script>
+    const $ci = document.querySelector('#ci-committee');
+    const $password = document.querySelector('#password-committee');
+
+    const isDigit = (char) => char >= '0' && char <= '9';
+
+    $ci.addEventListener('input', (e) => {
+      const last_char = e.target.value.slice(-1);
+      if(!isDigit(last_char)) {
+        e.target.value = e.target.value.slice(0, -1);
+      }
+    });
+
+    $password.addEventListener('input', (e) => {
+      const last_char = e.target.value.slice(-1);
+      if(last_char === ' ') {
+        e.target.value = e.target.value.slice(0, -1);
+      }
+    });
+  </script>
+{% endblock %}
