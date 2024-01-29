@@ -9,7 +9,7 @@ voter_service = VotersServices()
 
 
 def send_vote_controller():
-    return render_template("send_vote.html", candidates=candidates)
+    return render_template("send-vote.html", candidates=candidates)
 
 
 def vote_controller():

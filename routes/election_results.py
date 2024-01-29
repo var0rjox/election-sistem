@@ -13,5 +13,5 @@ def index():
     vices = dict_vic
     senators = dict_senator
     return render_template(
-        "election_results.html", presidents=presidents, vices=vices, senators=senators
+        "election-results.html", presidents=presidents, vices=vices, senators=senators
     )
