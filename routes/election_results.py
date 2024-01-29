@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template
-
-from models.elector import Votante, Cargo, Candidato
+from services.election import dict_president, dict_vic, dict_senator
 
 election_results = Blueprint(
     "election_results", __name__, url_prefix="/election_results"
@@ -10,4 +9,9 @@ election_results = Blueprint(
 @election_results.route("/")
 def index():
     # Datos de la vista
-    return render_template("election_results.html")
+    presidents = dict_president
+    vices = dict_vic
+    senators = dict_senator
+    return render_template(
+        "election_results.html", presidents=presidents, vices=vices, senators=senators
+    )

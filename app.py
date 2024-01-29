@@ -10,5 +10,5 @@ app.register_blueprint(user)
 app.register_blueprint(election_results)
 
 if __name__ == "__main__":
-    #app.run()
+    # app.run()
     app.run(debug=True)
