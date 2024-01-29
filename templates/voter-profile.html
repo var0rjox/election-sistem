@@ -8,49 +8,53 @@
         height: 200px;
         border-radius: 50%;
     }
+    .background{
+        height: 80vh;
+        margin: 5%;
+    } 
 </style>
-<div class="container-fluid d-flex flex-column justify-content-center align-items-center">
-    <header class = "w-100 py-4 text-center">
-        <h1>Perfil-Elector</h1>
-    </header>
-    <div class="container my-4 p-4 bg-light w-100 shadow" style="max-width: 800px;">
+<div class="background d-flex flex-column justify-content-center align-items-center">
+    
+    <div class="container my-4 p-4 m-4 bg-light w-100 shadow" style="max-width: 800px;">
+        <header class = "row text-center mt-3">
+            <h1 class="lead fs-3 text-uppercase fw-medium">Perfil-Elector</h1>
+        </header>
         <div class="row align-items-center">
             <!-- Columna izquierda con la imagen y CI -->
             <article class="col-6 d-flex justify-content-center flex-column text-center h-100">
                 <figure>
-                    <img src="../static/images/image-profile.png" class="avatar" alt="image-elector">
+                    <img src="{{ voter.photo }}" class="avatar" alt="image-elector">
                 </figure>
 
                 <div class="mt-1">
                     <p>
-                        <span class="lead">
-                            CI:
-                        </span>
-                         {{ voter.ci }}</p>
+                        <span class="lead fs-4">CI:</span>
+                        <span class="lead fs-4">{{ voter.ci }}</span>      
+                    </p>
                 </div>
             </article>
             <!-- Columna derecha con la información del votante -->
             <div class="col-6 d-flex justify-content-center h-100">
-                <table>
+                <table class="table table-borderless table-light">
                     <tr>
-                        <td class="lead">Nombre:</td>
-                        <td>{{ voter.name }}</td>
+                        <td class="lead fs-5">Nombre:</td>
+                        <td class="lead fs-5">{{ voter.name }}</td>
                     </tr>
                     <tr>
-                        <td class="lead">Fecha:</td>
-                        <td>{{ voter.birthdate }}</td>
+                        <td class="lead fs-5">Fecha:</td>
+                        <td class="lead fs-5">{{ voter.birthdate }}</td>
                     </tr>
                     <tr>
-                        <td class="lead">Estado:</td>
+                        <td class="lead fs-5">Estado:</td>
                         {% if voter.is_enabled %}
-                            <td class="text-success">Habilitado</td>
+                            <td class="text-success lead fs-5">Habilitado</td>
                         {% else %}
-                            <td class="text-danger">Inhabilitado</td>
+                            <td class="text-danger lead fs-5">Inhabilitado</td>
                         {% endif %}
                     </tr>
                     <tr>
-                        <td class="lead">Genero:</td>
-                        <td>{{ voter.gender }}</td>
+                        <td class="lead fs-5">Genero:</td>
+                        <td class="lead fs-5">{{ voter.gender }}</td>
                     </tr>
                 </table>
             </div>
@@ -63,7 +67,7 @@
         </div>
         {% else %} 
         <div class="row d-flex justify-content-center">
-            <a href="" class="btn btn-lg btn-secondary mt-3 disabled" style="max-width: 500px;">Emitir Voto</a>
+            <a href="{{url_for('home.voter_logout')}}" class="btn btn-lg btn-primary mt-3" style="max-width: 600px;">Cerrar Sesión</a>
         </div> 
         {% endif %}            
     </div>
