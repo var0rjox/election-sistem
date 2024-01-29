@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-from services.election import dict_president, dict_vic, dict_senator
+from mocks.election import dict_president, dict_vic, dict_senator
 
 election_results = Blueprint(
     "election_results", __name__, url_prefix="/election_results"
