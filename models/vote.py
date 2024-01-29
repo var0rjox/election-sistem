@@ -1,12 +1,5 @@
 class Vote:
-    def __init__(self, candidate, elector):
-        self.__candidate = candidate
-        self.__elector = elector
-
-    @property
-    def candidate(self):
-        return self.__candidate
-
-    @property
-    def elector(self):
-        return self.__elector
+    def __init__(self, elector_ci, candidate_voted, date_voted):
+        self.elector_ci = elector_ci
+        self.candidate_voted = candidate_voted
+        self.date_voted = date_voted

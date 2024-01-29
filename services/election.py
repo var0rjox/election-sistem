@@ -1,6 +1,4 @@
 from models.elector import Elector
-from models.vote import Vote
-from models.candidate import Candidate
 
 # Electors
 electors = []

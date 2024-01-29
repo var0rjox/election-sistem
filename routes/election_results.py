@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template
 
-from models.elector import Votante, Cargo, Candidato
 
 election_results = Blueprint(
     "election_results", __name__, url_prefix="/election_results"

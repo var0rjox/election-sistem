@@ -1,0 +1,39 @@
+{% extends "base-auth.html"%}
+
+{% block title%}Login User{% endblock %}
+
+{% block content_auth %}
+  <form class="mt-5" style="max-width: 480px; margin: auto;" action="#" method="post">
+    {{form.hidden_tag()}}
+
+    <h1 class="h3 mb-3 font-weight-normal text-center">Inicio de sesión de electores</h1>
+    {{form.ci.label(class="form-label text-left")}}
+    {{form.ci(class="form-control")}}
+
+    {{form.birthdate.label(class="form-label text-left mt-2")}}
+    {{form.birthdate(class="form-control")}}
+
+    <div class="d-grid">
+      {{form.submit(class="btn btn-lg btn-primary mt-3")}}
+
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="alert alert-danger mt-3" role="alert">
+          {{ messages[0] }}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+  </form>
+
+  <script>
+    const ciInput$ = document.getElementById('ci');
+
+    // Only allow numbers
+    ciInput$.addEventListener('input', (e) => {
+      e.target.value = e.target.value.replace(/\D/g, '');
+    });
+  </script>
+{% endblock %}

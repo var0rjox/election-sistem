@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Comite Electoral{% endblock %}
+
+{% block content %}
+<main>
+  <h2>CI: {{session['ci']}}</h2>
+
+  <a href="{{url_for('electoral_committee.logout')}}">Cerrar Sesión</a>
+</main>
+{% endblock %}
