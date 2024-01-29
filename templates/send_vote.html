@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Emitir voto{% endblock %}
+{% block content %}
+<h1 class="text-center">Lista de candidatos: Presidente</h1>
+<div class="container mt-5 ">
+    <form action="/subir_voto" method="post">
+        <div class="row">
+            {% for candidate in candidates %}
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card candidate-card" style="width: 17rem;" data-candidate="{{ candidate.president }}">
+                        <img class="card-img-top" src="{{ candidate.img }}" alt="{{ candidate.political_front_name }}">
+                        <div class="card-body">
+                            <h3 class="card-title">{{ "Frente electoral: " + candidate.political_front_name }}</h3>
+                            <h6 class="card-text">{{ "Presidente: " + candidate.president }}</h6>
+                            <p class="card-text">{{candidate.description}}</p>
+                            <div class="text-center">
+                                <input id="{{candidate.president}}" class="form-check-input-lg" type="radio" name="selected_candidate" value="{{ candidate.political_front_name }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="text-center">    
+            <label class="form-check-label" for="null">Nulo</label>
+            <input class="form-check-input-lg" type="radio" name="selected_candidate" value="Nulo">
+
+            <label class="form-check-label" for="blank">Blanco</label>
+            <input class="form-check-input-lg" type="radio" name="selected_candidate" value="Blanco">
+        </div>
+
+        <div class="text-center ">
+            <button id="btn-vote" type="button" class="text-center btn btn-primary m-3" >                
+                Votar
+            </button>
+        </div>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="modal_alert" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Mensaje</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="content-modal-body">
+                        <!-- content in script -->
+                    </div>
+                    <div class="modal-footer" id="content-modal-footer">
+                        <!-- content in script-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <script src="../static/js/send_vote_script.js"></script>
+</div>
+{% endblock %}
