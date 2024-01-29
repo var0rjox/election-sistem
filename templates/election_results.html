@@ -2,23 +2,71 @@
 content %}
 <div class="container">
   <h1>Votos emitidos</h1>
+  <hr />
+  <h2>Presidente</h2>
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Cargo</th>
         <th>Nombre</th>
+        <th>Partido</th>
         <th>Votos</th>
         <th>Porcentaje</th>
       </tr>
     </thead>
 
     <tbody>
-      {% for cargo in votos %}
+      {% for president in presidents %}
       <tr>
-        <td>{{ cargo}}</td>
-        <td>{{ cargo["nombre"] }}</td>
-        <td>{{ cargo["votos"] }}</td>
-        <td>{{ cargo["porcentaje"] }}%</td>
+        <td>{{president["name"] }}</td>
+        <td>{{president["party"] }}</td>
+        <td>{{president["number_of_votes"] }}</td>
+        <td>{{president["percentage"] }}%</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <hr />
+  <h2>Vicepresidente</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Partido</th>
+        <th>Votos</th>
+        <th>Porcentaje</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for vice in vices %}
+      <tr>
+        <td>{{vice["name"] }}</td>
+        <td>{{vice["party"] }}</td>
+        <td>{{vice["number_of_votes"] }}</td>
+        <td>{{vice["percentage"] }}%</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <hr />
+  <h2>Senadores</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Partido</th>
+        <th>Votos</th>
+        <th>Porcentaje</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for senator in senators %}
+      <tr>
+        <td>{{senator["name"] }}</td>
+        <td>{{senator["party"] }}</td>
+        <td>{{senator["number_of_votes"] }}</td>
+        <td>{{senator["percentage"] }}%</td>
       </tr>
       {% endfor %}
     </tbody>
