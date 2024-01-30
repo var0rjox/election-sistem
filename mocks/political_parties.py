@@ -40,7 +40,7 @@ representative4 = Candidate(
     position=CandidatePosition(name="Presidente"),
 )
 
-political_partys = [
+political_parties = [
     PoliticalParty(
         name="eew",
         acronym="21kl",

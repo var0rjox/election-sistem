@@ -1,75 +1,43 @@
-{% extends "base.html"%} {% block title%}Results Page{% endblock %} {% block
-content %}
-<div class="container">
-  <h1>Votos emitidos</h1>
-  <hr />
-  <h2>Presidente</h2>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Partido</th>
-        <th>Votos</th>
-        <th>Porcentaje</th>
-      </tr>
-    </thead>
+{% extends "base.html"%} 
 
-    <tbody>
-      {% for president in presidents %}
-      <tr>
-        <td>{{president["name"] }}</td>
-        <td>{{president["party"] }}</td>
-        <td>{{president["number_of_votes"] }}</td>
-        <td>{{president["percentage"] }}%</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  <hr />
-  <h2>Vicepresidente</h2>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Partido</th>
-        <th>Votos</th>
-        <th>Porcentaje</th>
-      </tr>
-    </thead>
+{% block title%}Resultados{% endblock %}
 
-    <tbody>
-      {% for vice in vices %}
-      <tr>
-        <td>{{vice["name"] }}</td>
-        <td>{{vice["party"] }}</td>
-        <td>{{vice["number_of_votes"] }}</td>
-        <td>{{vice["percentage"] }}%</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  <hr />
-  <h2>Senadores</h2>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Partido</th>
-        <th>Votos</th>
-        <th>Porcentaje</th>
-      </tr>
-    </thead>
+{% block content %}
+<section class="container">
+  <header class="text-center py-4">
+    <h1>Resultados</h1>
+  </header>
+  
+  <div class="d-flex flex-column gap-2 mb-4">
+    <h2 class="fs-4">Total Partidos: {{political_parties}}</h2>
+    
+    <h2 class="fs-4">Habilitados: {{enabled}}</h2>
 
-    <tbody>
-      {% for senator in senators %}
-      <tr>
-        <td>{{senator["name"] }}</td>
-        <td>{{senator["party"] }}</td>
-        <td>{{senator["number_of_votes"] }}</td>
-        <td>{{senator["percentage"] }}%</td>
+    <h2 class="fs-4">Votos Emitidos: {{votes}}</h2>
+  </div>
+
+  <div>
+    <table class="table table-light">
+      <tr class="table-primary">
+        <td scope="col">CANDIDATO</th>
+        <td scope="col">PARTIDO</th>
+        <td scope="col">VOTOS</th>
+        <td scope="col">PORCENTAGE</th>
       </tr>
+
+      {% for party in details %}
+        <tr class="table-secondary">
+          <td class="p-3">{{details[party]["data"]["representative"].name}}</td>
+          <td class="p-3">{{details[party]["data"].name}} - {{details[party]["data"].acronym}}</td>
+          <td class="p-3">{{details[party]["votes"]}}</td>
+          <td class="p-3">{{details[party]["percentage"]}}%</td>
+        </tr>
       {% endfor %}
-    </tbody>
-  </table>
-</div>
+    </table>
+
+    <div class="w-100 d-flex justify-content-end mt-5">
+      <a href="{{url_for('electoral_committee.profile')}}" class="btn btn-primary">Volver</a>
+    </div>
+  </div>
+</section>
 {% endblock %}

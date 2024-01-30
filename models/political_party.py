@@ -7,7 +7,6 @@ class PoliticalParty:
         self.__acronym = acronym
         self.__logo = logo
         self.__description = description
-        self.__candidates: list[Candidate] = []
         self.__representative: Candidate = representative
 
     @property
@@ -23,19 +22,12 @@ class PoliticalParty:
         return self.__logo
 
     @property
-    def candidates(self):
-        return self.__candidates
-
-    @property
     def description(self):
         return self.__description
 
     @description.setter
     def description(self, description):
         self.__description = description
-
-    def add_candidate(self, candidate: Candidate):
-        self.__candidates.append(candidate)
 
     @property
     def representative(self):
