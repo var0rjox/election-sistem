@@ -1,17 +1,10 @@
-from flask import Blueprint, render_template
-from mocks.election import dict_president, dict_vic, dict_senator
+from flask import Blueprint
 
-election_results = Blueprint(
-    "election_results", __name__, url_prefix="/election_results"
-)
+from controllers.results_controller import results_controller
+
+election_results = Blueprint("election_results", __name__)
 
 
-@election_results.route("/")
+@election_results.route("/resultados-elecciones")
 def index():
-    # Datos de la vista
-    presidents = dict_president
-    vices = dict_vic
-    senators = dict_senator
-    return render_template(
-        "election_results.html", presidents=presidents, vices=vices, senators=senators
-    )
+    return results_controller()

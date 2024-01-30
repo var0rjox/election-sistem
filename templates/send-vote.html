@@ -7,14 +7,14 @@
         <div class="row">
             {% for candidate in candidates %}
                 <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card candidate-card" style="width: 17rem;" data-candidate="{{ candidate.president }}">
-                        <img class="card-img-top" src="{{ candidate.img }}" alt="{{ candidate.political_front_name }}">
+                    <div class="card candidate-card" style="width: 17rem;" data-candidate="{{ candidate.representative.name }}">
+                        <img class="card-img-top" src="{{ candidate.logo }}" alt="{{ candidate.name }}">
                         <div class="card-body">
-                            <h3 class="card-title">{{ "Frente electoral: " + candidate.political_front_name }}</h3>
-                            <h6 class="card-text">{{ "Presidente: " + candidate.president }}</h6>
+                            <h3 class="card-title">{{ "Frente electoral: " + candidate.name }}</h3>
+                            <h6 class="card-text">{{ "Presidente: " + candidate.representative.name}}</h6>
                             <p class="card-text">{{candidate.description}}</p>
                             <div class="text-center">
-                                <input id="{{candidate.president}}" class="form-check-input-lg" type="radio" name="selected_candidate" value="{{ candidate.political_front_name }}">
+                                <input id="{{candidate.representative.name}}" class="form-check-input-lg" type="radio" name="selected_candidate" value="{{candidate.name}}">
                             </div>
                         </div>
                     </div>

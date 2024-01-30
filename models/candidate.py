@@ -1,20 +1,22 @@
-class Candidate:
-    def __init__(self, name, position, political_party):
-        self.__name = name
+from datetime import date
+from .voter import Voter
+from .candidate_position import CandidatePosition
+
+
+class Candidate(Voter):
+    def __init__(
+        self,
+        ci,
+        name,
+        birthdate: date,
+        gender,
+        photo,
+        is_enabled=True,
+        position: CandidatePosition = None,
+    ):
+        super().__init__(ci, name, birthdate, gender, photo, is_enabled)
         self.__position = position
-        self.__political_party = political_party
-
-    def __str__(self):
-        return f"Candidate: {self.name}, Cargo: {self.position}, Partido: {self.political_party}"
 
     @property
-    def get_name(self):
-        return self.__name
-
-    @property
-    def get_position(self):
+    def position(self):
         return self.__position
-
-    @property
-    def get_political_party(self):
-        return self.__political_party
