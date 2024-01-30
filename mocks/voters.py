@@ -8,7 +8,7 @@ voters = [
         birthdate=date(2002, 5, 5),
         is_enabled=True,
         name="Juan Perez",
-        gender="Male",
+        gender="M",
         photo="https://picsum.photos/200/300",
     ),
     Voter(
@@ -16,7 +16,7 @@ voters = [
         birthdate=date(1990, 1, 1),
         is_enabled=True,
         name="Maria Perez",
-        gender="Female",
+        gender="F",
         photo="https://picsum.photos/200/300",
     ),
     Voter(
@@ -24,7 +24,7 @@ voters = [
         birthdate=date(2000, 4, 4),
         is_enabled=True,
         name="Juan Perez",
-        gender="Male",
+        gender="M",
         photo="https://picsum.photos/200/300",
     ),
 ]
