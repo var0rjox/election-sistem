@@ -20,8 +20,8 @@ voters = [
         photo="https://picsum.photos/200/300",
     ),
     Voter(
-        ci="1234567",
-        birthdate=date(2002, 5, 5),
+        ci="123456",
+        birthdate=date(2000, 4, 4),
         is_enabled=True,
         name="Juan Perez",
         gender="Male",

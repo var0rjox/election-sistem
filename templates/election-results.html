@@ -25,13 +25,21 @@
         <td scope="col">PORCENTAGE</th>
       </tr>
 
-      {% for party in details %}
-        <tr class="table-secondary">
-          <td class="p-3">{{details[party]["data"]["representative"].name}}</td>
-          <td class="p-3">{{details[party]["data"].name}} - {{details[party]["data"].acronym}}</td>
-          <td class="p-3">{{details[party]["votes"]}}</td>
-          <td class="p-3">{{details[party]["percentage"]}}%</td>
-        </tr>
+      {% for party in details | sort_report %}
+        {% if details[party]["data"] %}
+          <tr class="table-secondary">
+            <td class="p-3">{{details[party]["data"]["representative"].name}}</td>
+            <td class="p-3">{{details[party]["data"].name}} - {{details[party]["data"].acronym}}</td>
+            <td class="p-3">{{details[party]["votes"]}}</td>
+            <td class="p-3">{{details[party]["percentage"]}}%</td>
+          </tr>
+        {% else %}
+          <tr class="table-secondary">
+            <td class="p-3" colspan="2">{{party}}</td>
+            <td class="p-3">{{details[party]["votes"]}}</td>
+            <td class="p-3">{{details[party]["percentage"]}}%</td>
+          </tr>
+        {% endif %}
       {% endfor %}
     </table>
 
