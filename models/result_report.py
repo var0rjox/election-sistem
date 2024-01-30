@@ -1,5 +1,4 @@
 from mocks.political_parties import political_parties
-from models.political_party import PoliticalParty
 
 
 class ResultReport:
