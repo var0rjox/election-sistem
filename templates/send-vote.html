@@ -21,12 +21,32 @@
                 </div>
             {% endfor %}
         </div>
-        <div class="text-center">    
-            <label class="form-check-label" for="null">Nulo</label>
-            <input class="form-check-input-lg" type="radio" name="selected_candidate" value="Nulo">
-
-            <label class="form-check-label" for="blank">Blanco</label>
-            <input class="form-check-input-lg" type="radio" name="selected_candidate" value="Blanco">
+        <div class="row text-center" style="
+            display: flex;
+            justify-content: center;
+        ">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card candidate-card" style="width: 10rem;" data-candidate="Nulo">
+                    <img class="card-img-top" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/null-5185929-4448772.png" alt="Nulo">
+                    <div class="card-body">
+                        <h3 class="card-title">Nulo</h3>
+                        <div class="text-center">
+                            <input id="Nulo" class="form-check-input-lg" type="radio" name="selected_candidate" value="Nulo">
+                        </div>
+                    </div>
+                </div>
+            </div>   
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card candidate-card" style="width: 10rem;" data-candidate="Blanco">
+                    <img class="card-img-top" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC" alt="Blanco">
+                    <div class="card-body">
+                        <h3 class="card-title">Blanco</h3>
+                        <div class="text-center">
+                            <input id="Blanco" class="form-check-input-lg" type="radio" name="selected_candidate" value="Blanco">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="text-center ">
