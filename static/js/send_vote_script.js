@@ -22,7 +22,7 @@ btn_vote.addEventListener("click", () => {
     modal_body_message = `¿Esta seguro de seleccionar a <b>${selected_candidate}</b> para votar?`;
     modal_buttons = `
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Enviar</button>
+            <button id="btn-submit" type="button" class="btn btn-primary">Enviar</button>
         `;
   }
 
@@ -32,6 +32,25 @@ btn_vote.addEventListener("click", () => {
   // Show modal
   var myModal = new bootstrap.Modal(document.getElementById("modal_alert"));
   myModal.show();
+
+  // Second modal
+  document.getElementById("btn-submit").addEventListener("click", () => {
+    myModal.hide();
+
+    let secondModalBody = "Haz finalizado el proceso para emitir tu voto, Gracias";
+    
+    document.getElementById("btn-close-modal").style.display= "none"
+    document.getElementById("content-modal-body").innerHTML = secondModalBody;
+    document.getElementById("content-modal-footer").style.display = "none";
+
+    var secondModal = new bootstrap.Modal(document.getElementById("modal_alert"));
+    secondModal.show();
+
+    setTimeout(() => {
+      secondModal.hide();
+      document.querySelector("form").submit();
+    }, 5000);
+  });
 });
 
 document.addEventListener("DOMContentLoaded", () => {
