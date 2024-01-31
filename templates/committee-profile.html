@@ -1,13 +1,9 @@
 {% extends 'base.html' %}
-
+{% import "profile.html" as profile %}
 {% block title %}Comite Electoral{% endblock %}
 
 {% block content %}
-<main>
-  <h2>CI: {{session['ci']}}</h2>
 
-  <a href="{{url_for('electoral_committee.logout')}}">Cerrar Sesión</a>
+{{ profile.nombreMacro(person) }}
 
-  <a href="{{url_for('election_results.index')}}">Ver Resultados</a>
-</main>
 {% endblock %}
