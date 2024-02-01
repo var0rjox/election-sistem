@@ -8,7 +8,7 @@ representative1 = Candidate(
     birthdate=date(1990, 1, 1),
     ci="1234567",
     gender="M",
-    name="Juanito",
+    name="Naranjito Manzana",
     photo="",
     position=CandidatePosition(name="Presidente"),
 )
@@ -42,30 +42,30 @@ representative4 = Candidate(
 
 political_parties = [
     PoliticalParty(
-        name="eew",
-        acronym="21kl",
-        logo="https://www.tmladenov.dev/images/img-test.png",
-        description="Descripcion para frente electoral",
+        name="Movimiento Naranja",
+        acronym="24mn",
+        logo="https://picsum.photos/100/200",
+        description="Un frente apoyado en el apoyo ciudadano comprometidos con el Naranja",
         representative=representative1,
     ),
     PoliticalParty(
         name="Unión Ciudadana",
         acronym="45ab",
-        logo="https://www.tmladenov.dev/images/img-test.png",
+        logo="https://picsum.photos/300/400",
         description="Un frente comprometido con el progreso y la igualdad para todos los ciudadanos.",
         representative=representative2,
     ),
     PoliticalParty(
         name="Renovación Democrática",
         acronym="32gh",
-        logo="https://www.tmladenov.dev/images/img-test.png",
+        logo="https://picsum.photos/500/600",
         description="Trabajamos por una democracia renovada, justa y transparente en beneficio de la sociedad.",
         representative=representative3,
     ),
     PoliticalParty(
         name="Fuerza Popular",
         acronym="78uv",
-        logo="https://www.tmladenov.dev/images/img-test.png",
+        logo="https://picsum.photos/700/800",
         description="Somos la fuerza que impulsa el desarrollo y la seguridad para el bienestar de todos.",
         representative=representative4,
     ),
