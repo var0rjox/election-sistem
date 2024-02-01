@@ -1,8 +1,8 @@
 {% extends "base.html"%}
-{% import "profile.html" as profile %}
+{% import "_profiles-macro.html" as profile %}
 {% block title %}Perfil-Elector{% endblock %}
 {% block content %}
 
-{{ profile.nombreMacro(person) }}
+{{ profile.profiles(person, 'Perfil-Elector') }}
 
 {% endblock %}

@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-{% import "profile.html" as profile %}
+{% import "_profiles-macro.html" as profile %}
 {% block title %}Comite Electoral{% endblock %}
 
 {% block content %}
 
-{{ profile.nombreMacro(person) }}
+{{ profile.profiles(person, 'Perfil-Comite') }}
 
 {% endblock %}
