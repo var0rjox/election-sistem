@@ -1,62 +1,65 @@
 {% extends "base.html" %}
 {% block title %}Emitir voto{% endblock %}
 {% block content %}
+<style>
+    .card-candidate:hover{
+        cursor: pointer;
+        transition: .4s;
+        background-color: beige;
+    }
+    .selected {
+        background-color: beige !important;
+    }
+</style>
 <h1 class="text-center">Lista de candidatos: Presidente</h1>
-<div class="container mt-5 ">
+<div class="container" style="display: flex;justify-content: space-around;">
     <form action="/subir_voto" method="post">
-        <div class="row">
+        <div class="col-md-3 p-3" style="display: flex;">
             {% for candidate in candidates %}
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card candidate-card" style="width: 17rem;" data-candidate="{{ candidate.representative.name }}">
-                        <img class="card-img-top" src="{{ candidate.logo }}" alt="{{ candidate.name }}">
-                        <div class="card-body">
-                            <h3 class="card-title">{{ "Frente electoral: " + candidate.name }}</h3>
-                            <h6 class="card-text">{{ "Presidente: " + candidate.representative.name}}</h6>
-                            <p class="card-text">{{candidate.description}}</p>
-                            <div class="text-center">
-                                <input id="{{candidate.representative.name}}" class="form-check-input-lg" type="radio" name="selected_candidate" value="{{candidate.name}}">
-                            </div>
+                <div class="card-candidate shadow-lg p-3 mb-5 rounded" data-candidate="{{ candidate.representative.name }}" style="margin-right: 10px;" onclick="selectCandidate(this)">
+                    <div class="text-center"> 
+                        <img src="{{ candidate.logo }}" alt="{{ candidate.name }}" style="width: 200px; height: 200px; border-radius: 50%;">
+                    </div>
+                    <h3> {{candidate.name}} </h3>
+                    <p> {{"Representante: " + candidate.representative.name}} </p>
+                    
+                    <p class="d-inline-flex gap-1">
+                        <a class="link-primary link-underline-opacity-0" data-bs-toggle="collapse" href="#{{ candidate.acronym }}" role="button" aria-expanded="false" aria-controls="{{ candidate.acronym}}">Mostrar descripcion</a>
+                    </p>
+                    <div class="collapse" id="{{ candidate.acronym }}">
+                        <div class="card card-body">
+                            {{candidate.description}}
                         </div>
                     </div>
+                    <input id="{{ candidate.representative.name }}" type="radio" name="selected_candidate" value="{{ candidate.name }}" style="opacity: 0;">
                 </div>
             {% endfor %}
-        </div>
-        <div class="row text-center" style="
-            display: flex;
-            justify-content: center;
-        ">
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card candidate-card" style="width: 10rem;" data-candidate="Nulo">
-                    <img class="card-img-top" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/null-5185929-4448772.png" alt="Nulo">
-                    <div class="card-body">
-                        <h3 class="card-title">Nulo</h3>
-                        <div class="text-center">
-                            <input id="Nulo" class="form-check-input-lg" type="radio" name="selected_candidate" value="Nulo">
-                        </div>
-                    </div>
+
+            <div class="card-candidate shadow-lg p-3 mb-5 rounded" data-candidate="Nulo" style="margin-right: 10px;" onclick="selectCandidate(this)">
+                <div class="text-center"> 
+                    <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/null-5185929-4448772.png" alt="Nulo" style="width: 200px; height: 200px; border-radius: 50%;">
+                    <h3> Nulo </h3>
                 </div>
-            </div>   
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card candidate-card" style="width: 10rem;" data-candidate="Blanco">
-                    <img class="card-img-top" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BgQAAAADDoPlTX+AIVQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwDcaiAAFXD1ujAAAAAElFTkSuQmCC" alt="Blanco">
-                    <div class="card-body">
-                        <h3 class="card-title">Blanco</h3>
-                        <div class="text-center">
-                            <input id="Blanco" class="form-check-input-lg" type="radio" name="selected_candidate" value="Blanco">
-                        </div>
-                    </div>
+                <input id="Nulo" type="radio" name="selected_candidate" value="Nulo" style="opacity: 0;">
+            </div>
+
+            <div class="card-candidate shadow-lg p-3 mb-5 rounded" data-candidate="Blanco" style="margin-right: 10px;" onclick="selectCandidate(this)">
+                <div class="text-center"> 
+                    <img src="https://i.stack.imgur.com/mwFzF.png" alt="Blanco" style="width: 200px; height: 200px; border-radius: 50%;">
+                    <h3> Blanco </h3>
                 </div>
+                <input id="Blanco" type="radio" name="selected_candidate" value="Blanco" style="opacity: 0;">
             </div>
         </div>
 
-        <div class="text-center ">
-            <button id="btn-vote" type="button" class="text-center btn btn-primary m-3" >                
+        <div class="text-center d-grid gap-2">
+            <button id="btn-vote" type="button" class="text-center btn btn-primary btn-lg m-3 " >                
                 Votar
             </button>
         </div>
         
         <!-- Modal -->
-        <div class="modal fade" id="modal_alert" tabindex="-1">
+        <div class="modal fade" id="modal_alert" data-bs-backdrop="static" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">

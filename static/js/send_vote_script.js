@@ -54,7 +54,7 @@ btn_vote.addEventListener("click", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  var candidateCards = document.querySelectorAll(".candidate-card");
+  var candidateCards = document.querySelectorAll(".card-candidate");
 
   candidateCards.forEach((card) => {
     card.addEventListener("click", () => {
@@ -63,3 +63,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+function selectCandidate (selectedDiv) {
+  var cards = document.getElementsByClassName('card-candidate');
+  for (var i = 0; i < cards.length; i++) {
+    cards[i].classList.remove('selected');
+  }
+  selectedDiv.classList.add('selected');
+}
