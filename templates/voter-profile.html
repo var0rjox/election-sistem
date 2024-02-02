@@ -1,6 +1,7 @@
-{% extends "base.html"%}
-{% import "_profiles-macro.html" as profile %}
-{% block title %}Perfil-Elector{% endblock %}
+{% extends 'base.html' %}
+{% from './macros/profile.html' import profile%}
+{% block title %}Comite Electoral{% endblock %}
+
 {% block content %}
 
 <style>
@@ -9,12 +10,19 @@
         height: 200px;
         border-radius: 50%;
     }
-    .background{
-        height: 75vh;
-        margin: 5%;
-    } 
 </style>
 
-{{ profile.profiles(person, 'Perfil-Elector') }}
+<section class="background h-100 d-flex flex-column align-items-center">
+    <div class="container my-auto p-4 bg-light w-100 shadow" style="max-width: 800px;">
+        <div class = "row text-center mt-3">
+            <h1 class="lead fs-3 text-uppercase fw-medium">PERFIL - ELECTOR</h1>
+        </div>
 
+        {{ profile(person) }}
+
+        <div class="row d-flex justify-content-center">
+            <a href="{{url_for('send_vote.vote')}}" class="btn btn-lg btn-primary mt-3" style="max-width: 500px;">Emitir Voto</a>
+        </div>
+    </div>
+</section>
 {% endblock %}
