@@ -12,8 +12,8 @@ insert into political_party(name, acronym, description, logo) values('Movimiento
 insert into political_party(name, acronym, description, logo) values('Partido Verde', 'PV', 'Promovemos políticas para la protección del medio ambiente.', 'https://picsum.photos/200/300?10');
 insert into political_party(name, acronym, description, logo) values('Unión Democrática', 'UD', 'Trabajamos por la unidad y la democracia en el país.', 'https://picsum.photos/200/300?11');
 
-insert into political_party(name, acronym, description, logo) values('Nulo', '???', '', 'https://picsum.photos/200/300?12');
-insert into political_party(name, acronym, description, logo) values('Blanco', '???', '', 'https://picsum.photos/200/300?13');
+insert into political_party(name, acronym, description, logo) values('Nulo', '???', '', 'https://cdn.iconscout.com/icon/premium/png-256-thumb/null-5185929-4448772.png');
+insert into political_party(name, acronym, description, logo) values('Blanco', '???', '', 'https://i.stack.imgur.com/mwFzF.png');
 
 insert into candidate(ci, name, birthdate, gender, photo, political_party_id) values('141315', 'Max Fernandez', '1999-05-12', 'M', 'https://picsum.photos/200/300?14', 1);
 insert into candidate(ci, name, birthdate, gender, photo, political_party_id) values('271828', 'Maria Lopez', '1985-09-20', 'F', 'https://picsum.photos/200/300?15', 2);
