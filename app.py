@@ -7,9 +7,27 @@ from routes.committee import electoral_committee
 from routes.voter import voter
 from routes.send_vote import send_vote
 from pipes.sort_report import sort_report
+from db.create_db import db
 
 app = Flask(__name__)
 app.secret_key = "mysecretkey"
+
+app.config["SQLALCHEMY_DATABASE_URI"] = (
+    "{SGBD}://{usuario}:{clave}@{servidor}/{database}".format(
+        SGBD="mysql+mysqlconnector",
+        usuario="",
+        clave="",
+        servidor="",
+        database="",
+    )
+)
+
+db.init_app(app)
+
+# Descomentar para crear la base de datos
+# with app.app_context():
+#     db.drop_all()
+#     db.create_all()
 
 app.register_blueprint(home)
 app.register_blueprint(user)

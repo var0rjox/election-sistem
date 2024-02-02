@@ -16,23 +16,25 @@
     <form action="/subir_voto" method="post">
         <div class="col-md-3 p-3" style="display: flex;">
             {% for candidate in candidates %}
-                <div class="card-candidate shadow-lg p-3 mb-5 rounded" data-candidate="{{ candidate.representative.name }}" style="margin-right: 10px;" onclick="selectCandidate(this)">
-                    <div class="text-center"> 
-                        <img src="{{ candidate.logo }}" alt="{{ candidate.name }}" style="width: 200px; height: 200px; border-radius: 50%;">
-                    </div>
-                    <h3> {{candidate.name}} </h3>
-                    <p> {{"Representante: " + candidate.representative.name}} </p>
-                    
-                    <p class="d-inline-flex gap-1">
-                        <a class="link-primary link-underline-opacity-0" data-bs-toggle="collapse" href="#{{ candidate.acronym }}" role="button" aria-expanded="false" aria-controls="{{ candidate.acronym}}">Mostrar descripcion</a>
-                    </p>
-                    <div class="collapse" id="{{ candidate.acronym }}">
-                        <div class="card card-body">
-                            {{candidate.description}}
+                {% if candidate.acronym != '???'%}
+                    <div class="card-candidate shadow-lg p-3 mb-5 rounded" data-candidate="{{ candidate.representative.name }}" style="margin-right: 10px;" onclick="selectCandidate(this)">
+                        <div class="text-center"> 
+                            <img src="{{ candidate.logo }}" alt="{{ candidate.name }}" style="width: 200px; height: 200px; border-radius: 50%;">
                         </div>
+                        <h3> {{candidate.name}} </h3>
+                        <p> {{"Representante: " + candidate.representative.name}} </p>
+                        
+                        <p class="d-inline-flex gap-1">
+                            <a class="link-primary link-underline-opacity-0" data-bs-toggle="collapse" href="#{{ candidate.acronym }}" role="button" aria-expanded="false" aria-controls="{{ candidate.acronym}}">Mostrar descripcion</a>
+                        </p>
+                        <div class="collapse" id="{{ candidate.acronym }}">
+                            <div class="card card-body">
+                                {{candidate.description}}
+                            </div>
+                        </div>
+                        <input id="{{ candidate.representative.name }}" type="radio" name="selected_candidate" value="{{ candidate.id }}" data-candidate-name = "{{candidate.name}}" style="opacity: 0;">
                     </div>
-                    <input id="{{ candidate.representative.name }}" type="radio" name="selected_candidate" value="{{ candidate.name }}" style="opacity: 0;">
-                </div>
+                {% endif %}
             {% endfor %}
 
             <div class="card-candidate shadow-lg p-3 mb-5 rounded" data-candidate="Nulo" style="margin-right: 10px;" onclick="selectCandidate(this)">
@@ -40,7 +42,7 @@
                     <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/null-5185929-4448772.png" alt="Nulo" style="width: 200px; height: 200px; border-radius: 50%;">
                     <h3> Nulo </h3>
                 </div>
-                <input id="Nulo" type="radio" name="selected_candidate" value="Nulo" style="opacity: 0;">
+                <input id="Nulo" type="radio" name="selected_candidate" value="{{7}}" data-candidate-name = "Nulo" style="opacity: 0;">
             </div>
 
             <div class="card-candidate shadow-lg p-3 mb-5 rounded" data-candidate="Blanco" style="margin-right: 10px;" onclick="selectCandidate(this)">
@@ -48,7 +50,7 @@
                     <img src="https://i.stack.imgur.com/mwFzF.png" alt="Blanco" style="width: 200px; height: 200px; border-radius: 50%;">
                     <h3> Blanco </h3>
                 </div>
-                <input id="Blanco" type="radio" name="selected_candidate" value="Blanco" style="opacity: 0;">
+                <input id="Blanco" type="radio" name="selected_candidate" data-candidate-name = "Blanco" value="{{8}}" style="opacity: 0;">
             </div>
         </div>
 

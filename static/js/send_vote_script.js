@@ -8,7 +8,7 @@ btn_vote.addEventListener("click", () => {
   for (let i = 0; i < radios.length && !is_any_radio_selected; i++) {
     if (radios[i].checked) {
       is_any_radio_selected = true;
-      selected_candidate = radios[i].value;
+      selected_candidate = radios[i].dataset.candidateName;
     }
   }
 
@@ -37,13 +37,16 @@ btn_vote.addEventListener("click", () => {
   document.getElementById("btn-submit").addEventListener("click", () => {
     myModal.hide();
 
-    let secondModalBody = "Haz finalizado el proceso para emitir tu voto, Gracias";
-    
-    document.getElementById("btn-close-modal").style.display= "none"
+    let secondModalBody =
+      "Haz finalizado el proceso para emitir tu voto, Gracias";
+
+    document.getElementById("btn-close-modal").style.display = "none";
     document.getElementById("content-modal-body").innerHTML = secondModalBody;
     document.getElementById("content-modal-footer").style.display = "none";
 
-    var secondModal = new bootstrap.Modal(document.getElementById("modal_alert"));
+    var secondModal = new bootstrap.Modal(
+      document.getElementById("modal_alert")
+    );
     secondModal.show();
 
     setTimeout(() => {
@@ -64,10 +67,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-function selectCandidate (selectedDiv) {
-  var cards = document.getElementsByClassName('card-candidate');
+function selectCandidate(selectedDiv) {
+  var cards = document.getElementsByClassName("card-candidate");
   for (var i = 0; i < cards.length; i++) {
-    cards[i].classList.remove('selected');
+    cards[i].classList.remove("selected");
   }
-  selectedDiv.classList.add('selected');
+  selectedDiv.classList.add("selected");
 }

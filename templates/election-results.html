@@ -1,16 +1,16 @@
-{% extends "base.html"%} 
+{% extends "base.html"%}
 
 {% block title%}Resultados{% endblock %}
 
 {% block content %}
-<section class="container">
+<section class="container pb-4">
   <header class="text-center py-4">
     <h1>Resultados</h1>
   </header>
-  
+
   <div class="d-flex flex-column gap-2 mb-4">
     <h2 class="fs-4">Total Partidos: {{political_parties}}</h2>
-    
+
     <h2 class="fs-4">Habilitados: {{enabled}}</h2>
 
     <h2 class="fs-4">Votos Emitidos: {{votes}}</h2>
@@ -26,7 +26,7 @@
       </tr>
 
       {% for party in details | sort_report %}
-        {% if details[party]["data"] %}
+        {% if details[party]["data"]["representative"].name != '111' %}
           <tr class="table-secondary">
             <td class="p-3">{{details[party]["data"]["representative"].name}}</td>
             <td class="p-3">{{details[party]["data"].name}} - {{details[party]["data"].acronym}}</td>
@@ -43,7 +43,7 @@
       {% endfor %}
     </table>
 
-    <div class="w-100 d-flex justify-content-end mt-5">
+    <div class="w-100 d-flex justify-content-end mt-4">
       <a href="{{url_for('electoral_committee.profile')}}" class="btn btn-primary">Volver</a>
     </div>
   </div>
