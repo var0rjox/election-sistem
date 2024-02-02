@@ -1,13 +1,24 @@
 {% extends 'base.html' %}
-
+{% import "_profiles-macro.html" as profile %}
 {% block title %}Comite Electoral{% endblock %}
 
 {% block content %}
-<main>
-  <h2>CI: {{session['ci']}}</h2>
 
-  <a href="{{url_for('electoral_committee.logout')}}">Cerrar Sesión</a>
+<style>
+    .avatar {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+    }
+    .background{
+        height: 65vh;
+        margin: 5%;
+    } 
+</style>
+<div class="container d-flex justify-content-end me-1">
+    <a href="{{url_for('electoral_committee.logout')}}" class="btn btn-lg mt-3 btn-outline-danger" style="max-width: 155px;">Cerrar Sesión</a>
+</div>
 
-  <a href="{{url_for('election_results.index')}}">Ver Resultados</a>
-</main>
+{{ profile.profiles(person, 'Perfil-Comite') }}
+
 {% endblock %}

@@ -3,6 +3,7 @@ from controllers.comittee_controller import (
     login_controller,
     profile_controller,
     logout_controller,
+    load_information,
 )
 
 electoral_committee = Blueprint(
@@ -20,7 +21,8 @@ def login():
 
 @electoral_committee.route("/perfil")
 def profile():
-    return profile_controller()
+    #return profile_contoller()
+    return load_information()
 
 
 @electoral_committee.route("/logout")
