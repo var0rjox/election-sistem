@@ -1,21 +1,5 @@
 {% macro profiles(person, title) %}
 
-<style>
-    .avatar {
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-    }
-    .background{
-        height: 71vh;
-        margin: 5%;
-    } 
-</style>
-{% if person.type == 'committee'%}
-<div class="container d-flex justify-content-end me-1">
-    <a href="{{url_for('electoral_committee.logout')}}" class="btn btn-lg mt-3 btn-outline-danger" style="max-width: 155px;">Cerrar Sesión</a>
-</div>
-{% endif %}
 <div class="background d-flex flex-column justify-content-center align-items-center">
     <div class="container my-4 p-4 m-4 bg-light w-100 shadow" style="max-width: 800px;">
         <div class = "row text-center mt-3">
@@ -68,22 +52,22 @@
         
         <!-- Fila para el botón de Emitir Voto -->
         </div>
-    </div> 
-    {% if person.type == 'voter' %}
-        {% if person.is_enabled %} 
-        <div class="row d-flex">
-            <a href="{{url_for('send_vote.vote')}}" class="btn btn-lg btn-primary mt-3" style="max-width: 500px;">Emitir Voto</a>
-        </div>
-        {% else %} 
+        {% if person.type == 'voter' %}
+            {% if person.is_enabled %} 
+            <div class="row d-flex justify-content-center">
+                <a href="{{url_for('send_vote.vote')}}" class="btn btn-lg btn-primary mt-3" style="max-width: 500px;">Emitir Voto</a>
+            </div>
+            {% else %} 
+            <div class="row d-flex justify-content-center">
+                <a href="{{url_for('home.voter_logout')}}" class="btn btn-lg btn-primary mt-3" style="max-width: 600px;">Cerrar Sesión</a>
+            </div> 
+            {% endif %}
+        {% elif person.type == 'committee' %}  
         <div class="row d-flex justify-content-center">
-            <a href="{{url_for('home.voter_logout')}}" class="btn btn-lg btn-primary mt-3" style="max-width: 600px;">Cerrar Sesión</a>
-        </div> 
-        {% endif %}
-    {% elif person.type == 'committee' %}  
-    <div class="row d-flex justify-content-center">
-        <a href="{{url_for('election_results.index')}}" class="btn btn-lg btn-primary mt-3" style="max-width: 500px;">Ver Resultados</a>
-    </div>
-    {% endif %}  
+            <a href="{{url_for('election_results.index')}}" class="btn btn-lg btn-primary mt-3" style="max-width: 500px;">Ver Resultados</a>
+        </div>
+        {% endif %} 
+    </div>  
 </div>
 
 {% endmacro %}

@@ -3,6 +3,18 @@
 {% block title %}Perfil-Elector{% endblock %}
 {% block content %}
 
+<style>
+    .avatar {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+    }
+    .background{
+        height: 75vh;
+        margin: 5%;
+    } 
+</style>
+
 {{ profile.profiles(person, 'Perfil-Elector') }}
 
 {% endblock %}

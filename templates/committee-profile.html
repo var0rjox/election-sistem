@@ -4,6 +4,21 @@
 
 {% block content %}
 
+<style>
+    .avatar {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+    }
+    .background{
+        height: 65vh;
+        margin: 5%;
+    } 
+</style>
+<div class="container d-flex justify-content-end me-1">
+    <a href="{{url_for('electoral_committee.logout')}}" class="btn btn-lg mt-3 btn-outline-danger" style="max-width: 155px;">Cerrar Sesión</a>
+</div>
+
 {{ profile.profiles(person, 'Perfil-Comite') }}
 
 {% endblock %}
