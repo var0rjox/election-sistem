@@ -2,12 +2,19 @@ from .candidate import Candidate
 
 
 class PoliticalParty:
-    def __init__(self, name, acronym, logo, description="", representative=None):
+    def __init__(
+        self, name, acronym, logo, description="", representative=None, id=None
+    ):
+        self.__id = id
         self.__name = name
         self.__acronym = acronym
         self.__logo = logo
         self.__description = description
         self.__representative: Candidate = representative
+
+    @property
+    def id(self):
+        return self.__id
 
     @property
     def name(self):

@@ -1,13 +1,12 @@
-from models.vote import Vote
-import datetime as dt
+from services.db_service import DBService
+
+db_service = DBService()
 
 
 class VoteService:
-    vote_list = []
-
-    def add_vote(self, ci, candidate):
-        vote = Vote(ci, candidate, dt.datetime.now())
-        self.vote_list.append(vote)
+    def add_vote(self, voter_ci, political_party_id):
+        db_service.add_vote(voter_id=voter_ci, political_party_id=political_party_id)
 
     def get_all_votes(self):
-        return self.vote_list
+        votes = db_service.get_votes()
+        return votes

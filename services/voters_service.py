@@ -1,27 +1,18 @@
-from mocks.voters import voters
+from services.db_service import DBService
+
+db_service = DBService()
 
 
 class VotersServices:
-    def __init__(self):
-        self.voters = voters
-
     def get_single_voter(self, ci):
-        for voter in self.voters:
-            if voter.ci == ci:
-                return voter
-
-        return None
+        voter = db_service.get_voter(ci)
+        return voter
 
     def get_all_voters(self):
+        self.voters = db_service.get_voters()
         return self.voters
 
-    def add_voter(self, voter):
-        self.voters.append(voter)
-
     def update_voter_status(self, ci):
-        for voter in self.voters:
-            if voter.ci == ci:
-                voter.is_enabled = not voter.is_enabled
-                return voter
+        db_service.update_voter_enabled(ci, False)
 
-        return None
+        return True
