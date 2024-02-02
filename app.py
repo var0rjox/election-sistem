@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 from flask import Flask
 
 from routes.home import home
@@ -9,16 +11,18 @@ from routes.send_vote import send_vote
 from pipes.sort_report import sort_report
 from db.create_db import db
 
+load_dotenv()
+
 app = Flask(__name__)
 app.secret_key = "mysecretkey"
 
 app.config["SQLALCHEMY_DATABASE_URI"] = (
-    "{SGBD}://{usuario}:{clave}@{servidor}/{database}".format(
+    "{SGBD}://{user}:{password}@{db_url}/{database}".format(
         SGBD="mysql+mysqlconnector",
-        usuario="",
-        clave="",
-        servidor="",
-        database="",
+        user=os.getenv("DATABASE_USER"),
+        password=os.getenv("DATABASE_PASSWORD"),
+        db_url=os.getenv("DATABASE_URL"),
+        database=os.getenv("DATABASE_NAME"),
     )
 )
 
