@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import text
 
 
 db = SQLAlchemy()
@@ -61,3 +62,16 @@ class Vote(db.Model):
         db.Integer, db.ForeignKey("political_party.id"), primary_key=True
     )
     date_voted = db.Column(db.DateTime(timezone=True))
+
+
+def create_db(app):
+    global db
+    with app.app_context():
+        db.drop_all()
+        db.create_all()
+
+        with app.open_resource("./db/script.sql", mode="r") as archivo_sql:
+            for linea in archivo_sql:
+                if linea != "\n":
+                    db.session.execute(text(linea))
+        db.session.commit()
