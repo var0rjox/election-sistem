@@ -34,24 +34,16 @@
                         </div>
                         <input id="{{ candidate.representative.name }}" type="radio" name="selected_candidate" value="{{ candidate.id }}" data-candidate-name = "{{candidate.name}}" style="opacity: 0;">
                     </div>
+                {% else %}
+                    <div class="card-candidate shadow-lg p-3 mb-5 rounded" data-candidate="Nulo" style="margin-right: 10px;" onclick="selectCandidate(this)">
+                        <div class="text-center"> 
+                            <img src="{{candidate.logo}}" alt="{{candidate.name}}" style="width: 200px; height: 200px; border-radius: 50%;">
+                            <h3> {{candidate.name}} </h3>
+                        </div>
+                        <input id="{{candidate.name}}" type="radio" name="selected_candidate" value="{{candidate.id}}" data-candidate-name = "{{candidate.name}}" style="opacity: 0;">
+                    </div>
                 {% endif %}
             {% endfor %}
-
-            <div class="card-candidate shadow-lg p-3 mb-5 rounded" data-candidate="Nulo" style="margin-right: 10px;" onclick="selectCandidate(this)">
-                <div class="text-center"> 
-                    <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/null-5185929-4448772.png" alt="Nulo" style="width: 200px; height: 200px; border-radius: 50%;">
-                    <h3> Nulo </h3>
-                </div>
-                <input id="Nulo" type="radio" name="selected_candidate" value="{{7}}" data-candidate-name = "Nulo" style="opacity: 0;">
-            </div>
-
-            <div class="card-candidate shadow-lg p-3 mb-5 rounded" data-candidate="Blanco" style="margin-right: 10px;" onclick="selectCandidate(this)">
-                <div class="text-center"> 
-                    <img src="https://i.stack.imgur.com/mwFzF.png" alt="Blanco" style="width: 200px; height: 200px; border-radius: 50%;">
-                    <h3> Blanco </h3>
-                </div>
-                <input id="Blanco" type="radio" name="selected_candidate" data-candidate-name = "Blanco" value="{{8}}" style="opacity: 0;">
-            </div>
         </div>
 
         <div class="text-center d-grid gap-2">
