@@ -26,7 +26,7 @@
                 <td class="lead fs-5">{{ person.birthdate }}</td>
             </tr>
 
-            {% if person.is_enabled %}
+            {% if person.is_enabled is defined %}
                 <tr>
                     <td class="lead fs-5">Estado:</td>
                     {% if person.is_enabled %}
