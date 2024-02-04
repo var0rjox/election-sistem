@@ -1,7 +1,6 @@
 from flask import Blueprint
 from controllers.comittee_controller import (
     login_controller,
-    profile_controller,
     logout_controller,
     load_information,
 )
@@ -21,7 +20,6 @@ def login():
 
 @electoral_committee.route("/perfil")
 def profile():
-    #return profile_contoller()
     return load_information()
 
 

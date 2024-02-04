@@ -1,0 +1,51 @@
+{% macro profile(person) %}
+<div class="row align-items-center">
+    <!-- Columna izquierda con la imagen y CI -->
+    <article class="col-6 d-flex justify-content-center flex-column text-center h-100">
+        <figure>
+            <img src="{{ person.photo }}" class="avatar" alt="image-elector">
+        </figure>
+
+        <div class="mt-1">
+            <p>
+                <span class="lead fs-4">CI:</span>
+                <span class="lead fs-4">{{ person.ci }}</span>      
+            </p>
+        </div>
+    </article>
+    <!-- Columna derecha con la información de la persona -->
+    <div class="col-6 d-flex justify-content-center h-100">
+        <table class="table table-borderless table-light">
+            <tr>
+                <td class="lead fs-5">Nombre:</td>
+                <td class="lead fs-5">{{ person.name }}</td>
+            </tr>
+
+            <tr>
+                <td class="lead fs-5">Fecha:</td>
+                <td class="lead fs-5">{{ person.birthdate }}</td>
+            </tr>
+
+            {% if person.is_enabled is defined %}
+                <tr>
+                    <td class="lead fs-5">Estado:</td>
+                    {% if person.is_enabled %}
+                        <td class="text-success lead fs-5">Habilitado</td>
+                    {% else %}
+                        <td class="text-danger lead fs-5">Inhabilitado</td>
+                    {% endif %}
+                </tr>
+            {% endif %}
+            
+            <tr>
+                <td class="lead fs-5">Genero:</td>
+                {% if person.gender == 'M'%}
+                <td class="lead fs-5">Masculino</td>
+                {% else %}
+                <td class="lead fs-5">Femenino</td>
+                {% endif %}
+            </tr>
+        </table>
+    </div>
+</div>
+{% endmacro %}

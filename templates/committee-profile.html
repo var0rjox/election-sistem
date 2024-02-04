@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% import "_profiles-macro.html" as profile %}
+{% from './macros/profile.html' import profile%}
 {% block title %}Comite Electoral{% endblock %}
 
 {% block content %}
@@ -10,15 +10,23 @@
         height: 200px;
         border-radius: 50%;
     }
-    .background{
-        height: 65vh;
-        margin: 5%;
-    } 
 </style>
-<div class="container d-flex justify-content-end me-1">
-    <a href="{{url_for('electoral_committee.logout')}}" class="btn btn-lg mt-3 btn-outline-danger" style="max-width: 155px;">Cerrar Sesión</a>
-</div>
 
-{{ profile.profiles(person, 'Perfil-Comite') }}
+<section class="background h-100 d-flex flex-column align-items-center">
+    <div class="container-fluid d-flex justify-content-end me-1 w-100">
+        <a href="{{url_for('electoral_committee.logout')}}" class="btn btn-lg mt-3 btn-outline-danger" style="max-width: 155px;">Cerrar Sesión</a>
+    </div>
 
+    <div class="container my-auto p-4 bg-light w-100 shadow" style="max-width: 800px;">
+        <div class = "row text-center mt-3">
+            <h1 class="lead fs-3 text-uppercase fw-medium">PERFIL - COMITE</h1>
+        </div>
+
+        {{ profile(person) }}
+
+        <div class="row d-flex justify-content-center">
+            <a href="{{url_for('election_results.index')}}" class="btn btn-lg btn-primary mt-3" style="max-width: 500px;">Ver Resultados</a>
+        </div>
+    </div>
+</section>
 {% endblock %}

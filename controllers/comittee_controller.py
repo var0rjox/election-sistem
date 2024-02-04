@@ -41,8 +41,8 @@ def logout_controller():
     session.pop("ci", None)
     return redirect(url_for("electoral_committee.login"))
 
+
 def load_information():
     ci = session["ci"]
     current_committee = committee_service.get_user(ci)
-    current_committee.type = 'committee'
-    return render_template("committee-profile.html", person = current_committee)
+    return render_template("committee-profile.html", person=current_committee)
