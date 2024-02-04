@@ -16,36 +16,45 @@
     <h2 class="fs-4">Votos Emitidos: {{votes}}</h2>
   </div>
 
-  <div>
-    <table class="table table-light">
-      <tr class="table-primary">
-        <td scope="col">CANDIDATO</th>
-        <td scope="col">PARTIDO</th>
-        <td scope="col">VOTOS</th>
-        <td scope="col">PORCENTAGE</th>
-      </tr>
-
-      {% for party in details | sort_report %}
-        {% if details[party]["data"]["representative"].name != '111' %}
-          <tr class="table-secondary">
-            <td class="p-3">{{details[party]["data"]["representative"].name}}</td>
-            <td class="p-3">{{details[party]["data"].name}} - {{details[party]["data"].acronym}}</td>
-            <td class="p-3">{{details[party]["votes"]}}</td>
-            <td class="p-3">{{details[party]["percentage"]}}%</td>
-          </tr>
-        {% else %}
-          <tr class="table-secondary">
-            <td class="p-3" colspan="2">{{party}}</td>
-            <td class="p-3">{{details[party]["votes"]}}</td>
-            <td class="p-3">{{details[party]["percentage"]}}%</td>
-          </tr>
-        {% endif %}
-      {% endfor %}
-    </table>
+  <div class="container-fluid p-0">
+    <div class="container-fluid">
+      <table class="table table-light">
+        <tr class="table-primary">
+          <td scope="col">CANDIDATO</th>
+          <td scope="col">PARTIDO</th>
+          <td scope="col">VOTOS</th>
+          <td scope="col">PORCENTAGE</th>
+        </tr>
+  
+        {% for party in details | sort_report %}
+          {% if details[party]["data"]["representative"].name != '111' %}
+            <tr class="table-secondary">
+              <td class="p-3">{{details[party]["data"]["representative"].name}}</td>
+              <td class="p-3">{{details[party]["data"].name}} - {{details[party]["data"].acronym}}</td>
+              <td class="p-3">{{details[party]["votes"]}}</td>
+              <td class="p-3">{{details[party]["percentage"]}}%</td>
+            </tr>
+          {% else %}
+            <tr class="table-secondary">
+              <td class="p-3" colspan="2">{{party}}</td>
+              <td class="p-3">{{details[party]["votes"]}}</td>
+              <td class="p-3">{{details[party]["percentage"]}}%</td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </table>
+  
+      <div id="pie-diagram" class="d-flex justify-content-center"></div>
+    </div>
 
     <div class="w-100 d-flex justify-content-end mt-4">
       <a href="{{url_for('electoral_committee.profile')}}" class="btn btn-primary">Volver</a>
     </div>
   </div>
 </section>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+  const diagram = {{json_diagram | safe}};
+  Plotly.newPlot('pie-diagram', diagram.data,  diagram.layout);
+</script>
 {% endblock %}
