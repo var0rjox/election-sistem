@@ -18,7 +18,7 @@
             {% for candidate in candidates %}
                 {% if candidate.acronym != '???'%}
                     <div class="card" data-candidate="{{ candidate.representative.name }}" onclick="selectCandidate(this)">
-                        <img class="card-img-top" src="{{ candidate.logo }}" alt="{{ candidate.name }}" style="aspect-ratio: 1; object-fit: cover;">
+                        <img class="card-img-top" src="{{ candidate.representative.photo }}" alt="{{ candidate.name }}" style="aspect-ratio: 1; object-fit: cover;">
                         <div class="card-body" style="display: flex; flex-direction: column;">
                             <h3 class="h4">{{candidate.representative.name}} </h3>
                             <p> {{candidate.name}} </p>
