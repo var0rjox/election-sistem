@@ -5,7 +5,9 @@ from wtforms.validators import InputRequired, Length
 
 class Login(FlaskForm):
     ci = PasswordField(
-        "CI", validators=[InputRequired(), Length(min=7, max=10)], id="ci-committee"
+        "Carnet de identidad",
+        validators=[InputRequired(), Length(min=7, max=10)],
+        id="ci-committee",
     )
     password = PasswordField(
         "Contraseña",
