@@ -37,22 +37,22 @@ btn_vote.addEventListener("click", () => {
   // Second modal
   document.getElementById("btn-submit").addEventListener("click", () => {
     myModal.hide();
-
+    
     let secondModalBody =
-      "Haz finalizado el proceso para emitir tu voto, Gracias";
+    "Haz finalizado el proceso para emitir tu voto, Gracias";
 
     document.getElementById("btn-close-modal").style.display = "none";
     document.getElementById("content-modal-body").innerHTML = secondModalBody;
     document.getElementById("content-modal-footer").style.display = "none";
-
+    
     var secondModal = new bootstrap.Modal(
       document.getElementById("modal_alert")
-    );
+      );
+    document.querySelector("form").submit();
     secondModal.show();
 
     setTimeout(() => {
       secondModal.hide();
-      document.querySelector("form").submit();
     }, 5000);
   });
 });
