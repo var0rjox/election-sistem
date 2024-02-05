@@ -1,4 +1,5 @@
 const btn_vote = document.getElementById("btn-vote");
+
 btn_vote.addEventListener("click", () => {
   let radios = document.getElementsByName("selected_candidate");
   let is_any_radio_selected = false;
@@ -68,9 +69,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function selectCandidate(selectedDiv) {
-  var cards = document.getElementsByClassName("card-candidate");
+  var cards = document.getElementsByClassName("bg-body-secondary");
   for (var i = 0; i < cards.length; i++) {
-    cards[i].classList.remove("selected");
+    cards[i].classList.remove("bg-body-secondary");
   }
-  selectedDiv.classList.add("selected");
+  selectedDiv.classList.add("bg-body-secondary");
+  selectedDiv.querySelector("input").checked = true;
 }
