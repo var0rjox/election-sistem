@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  mySQL:
+    image: mysql:5
+    restart: always
+    container_name: myDB
+    environment:
+      - MYSQL_DATABASE=pilfrut
+      - MYSQL_ROOT_PASSWORD=admintoor
+      - MYSQL_USER=app
+      - MYSQL_PASSWORD=admintoor
+      - MYSQL_PORT=3306
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql_data:/var/lib/mysqlMYSQL_PORT=3306
