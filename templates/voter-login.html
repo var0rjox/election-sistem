@@ -3,17 +3,21 @@
 {% block title%}Login User{% endblock %}
 
 {% block content_auth %}
-  <form class="mt-5 p-4 bg-light shadow w-100" style="max-width: 480px; margin: auto;" action="#" method="post">
+  <form class="mt-5 p-4 bg-light shadow w-100" style="max-width: 550px; margin: auto;" action="#" method="post">
     {{form.hidden_tag()}}
 
-    <h1 class="h3 mb-3 font-weight-normal text-center">Inicio de sesión de electores</h1>
-    {{form.ci.label(class="form-label text-left")}}
-    {{form.ci(class="form-control")}}
+    <h1 class="h3 mb-3 font-weight-normal text-center">Inicio de Sesión - Electores</h1>
+    <div class="mx-auto" style="max-width: 480px;">
+      {{form.ci.label(class="form-label text-left")}}
+      {{form.ci(class="form-control")}}
+    </div>
 
-    {{form.birthdate.label(class="form-label text-left mt-2")}}
-    {{form.birthdate(class="form-control")}}
+    <div class="mx-auto" style="max-width: 480px;">
+      {{form.birthdate.label(class="form-label text-left mt-2")}}
+      {{form.birthdate(class="form-control")}}
+    </div>
 
-    <div class="d-grid">
+    <div class="d-grid mx-auto" style="max-width: 480px;">
       {{form.submit(class="btn btn-lg btn-primary mt-3")}}
 
     </div>

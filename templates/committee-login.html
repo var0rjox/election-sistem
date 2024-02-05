@@ -5,46 +5,35 @@ Comite Electoral
 {% endblock %}
 
 {% block content_auth %}
-  <div class="container d-flex flex-column align-items-center mt-5">
-    <form class="mx-auto p-4 bg-light w-100 shadow" style="max-width: 600px; " action="" method="post">
-      <h1 class="h3 font-weight-normal text-center pb-4">Inicio de Sesión - Comite Electoral</h1>
-      {{ form.hidden_tag() }}
+  <form class="mt-5 m-auto p-4 bg-light w-100 shadow" style="max-width: 550px; " action="" method="post">
+    <h1 class="h3 font-weight-normal text-center mb-3">Inicio de Sesión - Comite Electoral</h1>
+    {{ form.hidden_tag() }}
 
-      <div class="row mb-4">
-          <div class="col-md-4">
-              {{ form.ci.label(class = "form-label") }}
-          </div>
+    <div class="mx-auto" style="max-width: 480px;">
+      {{ form.ci.label(class = "form-label") }}
+        
+      {{ form.ci(class = "form-control") }}
+    </div>
 
-          <div class="col-md-8">
-              {{ form.ci(class = "form-control") }}
-          </div>
-      </div>
+    <div class="mx-auto" style="max-width: 480px;">
+      {{ form.password.label(class = "form-label mt-2") }}
 
-      <div class="row mb-4">
-          <div class="col-md-4">
-              {{ form.password.label(class = "form-label") }}
-          </div>
+      {{ form.password(class = "form-control") }}
+    </div>
 
-          <div class="col-md-8">
-              {{ form.password(class = "form-control") }}
-          </div>
-      </div>
+    <div class="d-grid mx-auto" style="max-width: 480px;">
+      {{form.submit(class="btn btn-lg btn-primary mt-3")}}
 
-      <div class="row">
-          <div class="col text-center">
-              {{ form.submit(class = "btn btn-primary px-5") }}
-          </div>
-      </div>
+    </div>
 
-      {% with messages =  get_flashed_messages() %}
-        {% if messages %}
-          <div class="alert alert-danger mt-3" role="alert">
-            {{ messages[0] }}
-          </div>
-        {% endif %}
-      {% endwith %}
-    </form>
-  </div>
+    {% with messages =  get_flashed_messages() %}
+      {% if messages %}
+        <div class="alert alert-danger mt-3" role="alert">
+          {{ messages[0] }}
+        </div>
+      {% endif %}
+    {% endwith %}
+  </form>
 
   <script>
     const $ci = document.querySelector('#ci-committee');

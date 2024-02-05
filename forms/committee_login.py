@@ -8,6 +8,10 @@ class Login(FlaskForm):
         "Carnet de identidad",
         validators=[InputRequired(), Length(min=7, max=10)],
         id="ci-committee",
+        render_kw={
+            "placeholder": "CI: 99999",
+            "autofocus": True,
+        },
     )
     password = PasswordField(
         "Contraseña",
