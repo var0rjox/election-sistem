@@ -48,7 +48,7 @@
         <div id="pie-diagram" class="d-flex justify-content-center"></div>
       {% endif %}
     </div>
-    <div class="row justify-content-end align-items-end">
+    <div class="row justify-content-end align-items-end no-print">
       <div class="col-12 d-flex justify-content-end mt-4">
         <button id="btn-print" class="btn btn-primary me-2">Imprimir</button>
         <a href="{{url_for('electoral_committee.profile')}}" class="btn btn-primary">Volver</a>
@@ -56,6 +56,13 @@
     </div> 
   </div>
 </section>
+<style>
+  @media print {
+    .no-print, .no-print * {
+        display: none !important;
+    }
+  }
+</style>
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script>
   const diagram = {{json_diagram | safe}};
