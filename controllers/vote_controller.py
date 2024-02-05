@@ -1,4 +1,5 @@
 from flask import session, request, render_template, redirect, url_for
+from time import sleep
 
 from services.vote_service import VoteService
 from services.voters_service import VotersServices
@@ -18,4 +19,5 @@ def vote_controller():
     id_political_party = request.form.get("selected_candidate")
     vote_service.add_vote(session["ci"], id_political_party)
     voter_service.update_voter_status(session["ci"])
+    sleep(5)
     return redirect(url_for("home.voter_logout"))
