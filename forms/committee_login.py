@@ -17,5 +17,8 @@ class Login(FlaskForm):
         "Contraseña",
         validators=[InputRequired(), Length(min=6, max=12)],
         id="password-committee",
+        render_kw={
+            "placeholder": "Ingresa tu contraseña",
+        },
     )
     submit = SubmitField("Ingresar")
