@@ -44,7 +44,9 @@
         {% endfor %}
       </table>
   
-      <div id="pie-diagram" class="d-flex justify-content-center"></div>
+      {% if votes > 0 %}
+        <div id="pie-diagram" class="d-flex justify-content-center"></div>
+      {% endif %}
     </div>
 
     <div class="w-100 d-flex justify-content-end mt-4">
