@@ -15,10 +15,10 @@ insert into political_party(name, acronym, description, logo) values('Unión Dem
 insert into political_party(name, acronym, description, logo) values('Nulo', '???', '', 'https://cdn.iconscout.com/icon/premium/png-256-thumb/null-5185929-4448772.png');
 insert into political_party(name, acronym, description, logo) values('Blanco', '???', '', 'https://i.stack.imgur.com/mwFzF.png');
 
-insert into candidate(ci, name, birthdate, gender, photo, political_party_id) values('141315', 'Max Fernandez', '1999-05-12', 'M', 'https://picsum.photos/200/300?14', 1);
-insert into candidate(ci, name, birthdate, gender, photo, political_party_id) values('271828', 'Maria Lopez', '1985-09-20', 'F', 'https://picsum.photos/200/300?15', 2);
-insert into candidate(ci, name, birthdate, gender, photo, political_party_id) values('314159', 'Juan Martinez', '1978-03-15', 'M', 'https://picsum.photos/200/300?16', 3);
-insert into candidate(ci, name, birthdate, gender, photo, political_party_id) values('112358', 'Ana Ramirez', '1990-11-30', 'F', 'https://picsum.photos/200/300?17', 4);
+insert into candidate(ci, name, birthdate, gender, photo, political_party_id) values('141315', 'Max Fernandez', '1999-05-12', 'M', 'https://i.pravatar.cc/400?img=53', 1);
+insert into candidate(ci, name, birthdate, gender, photo, political_party_id) values('271828', 'Maria Lopez', '1985-09-20', 'F', 'https://i.pravatar.cc/400?img=35', 2);
+insert into candidate(ci, name, birthdate, gender, photo, political_party_id) values('314159', 'Juan Martinez', '1978-03-15', 'M', 'https://i.pravatar.cc/400?img=64', 3);
+insert into candidate(ci, name, birthdate, gender, photo, political_party_id) values('112358', 'Ana Ramirez', '1990-11-30', 'F', 'https://i.pravatar.cc/400?img=26', 4);
 
 insert into candidate(ci, name, birthdate, gender, photo, political_party_id) values('########', '111', NULL, '', '', 5);
 insert into candidate(ci, name, birthdate, gender, photo, political_party_id) values('$$$$$$$$', '111', NULL, '', '', 6);
