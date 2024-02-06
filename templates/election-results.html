@@ -23,7 +23,7 @@
           <td scope="col">CANDIDATO</th>
           <td scope="col">PARTIDO</th>
           <td scope="col">VOTOS</th>
-          <td scope="col">PORCENTAGE</th>
+          <td scope="col">PORCENTAJE</th>
         </tr>
   
         {% for party in details | sort_report %}
@@ -45,7 +45,7 @@
       </table>
   
       {% if votes > 0 %}
-        <div id="pie-diagram" class="d-flex justify-content-center"></div>
+        <div id="pie-diagram" class="container justify-content-center" style="max-width: 700px;"></div>
       {% endif %}
     </div>
     <div class="row justify-content-end align-items-end no-print">
@@ -56,6 +56,7 @@
     </div> 
   </div>
 </section>
+
 <style>
   @media print {
     .no-print, .no-print * {
@@ -63,10 +64,12 @@
     }
   }
 </style>
+
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script>
   const diagram = {{json_diagram | safe}};
-  Plotly.newPlot('pie-diagram', diagram.data,  diagram.layout);
+  const totalVotes = {{votes}};
+  if(totalVotes > 0) Plotly.newPlot('pie-diagram', diagram.data,  diagram.layout);
 </script>
 <script src="../static/js/print.js"></script>
 {% endblock %}
