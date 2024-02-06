@@ -48,12 +48,22 @@
         <div id="pie-diagram" class="container justify-content-center" style="max-width: 700px;"></div>
       {% endif %}
     </div>
-
-    <div class="w-100 d-flex justify-content-end mt-4">
-      <a href="{{url_for('electoral_committee.profile')}}" class="btn btn-primary">Volver</a>
-    </div>
+    <div class="row justify-content-end align-items-end no-print">
+      <div class="col-12 d-flex justify-content-end mt-4">
+        <button id="btn-print" class="btn btn-primary me-2">Imprimir</button>
+        <a href="{{url_for('electoral_committee.profile')}}" class="btn btn-primary">Volver</a>
+      </div>
+    </div> 
   </div>
 </section>
+
+<style>
+  @media print {
+    .no-print, .no-print * {
+        display: none !important;
+    }
+  }
+</style>
 
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script>
@@ -61,4 +71,5 @@
   const totalVotes = {{votes}};
   if(totalVotes > 0) Plotly.newPlot('pie-diagram', diagram.data,  diagram.layout);
 </script>
+<script src="../static/js/print.js"></script>
 {% endblock %}
