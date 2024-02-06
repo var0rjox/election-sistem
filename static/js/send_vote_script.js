@@ -1,78 +1,82 @@
 const btn_vote = document.getElementById("btn-vote");
+const voteForm = document.getElementById("vote-form");
+
+voteForm.addEventListener("submit", (e) => {
+  votingFinished();
+});
+
+function getCheckedCandidate() {
+  let radios = document.getElementsByName("selected_candidate");
+  let selected_candidate = Array.from(radios).find((radio) => radio.checked);
+
+  return { selected_candidate: selected_candidate?.dataset.candidateName };
+}
+
+function anyCandidateChecked() {
+  const aceptButton = document.createElement("button");
+  aceptButton.classList.add("btn", "btn-primary");
+  aceptButton.setAttribute("data-bs-dismiss", "modal");
+  aceptButton.setAttribute("type", "button");
+  aceptButton.innerText = "Aceptar";
+
+  const message = "Seleccione un candidato.";
+  const { modal } = createModal(message, [aceptButton]);
+  modal.show();
+}
+
+function confirmVote(selected_candidate) {
+  const cancelButton = document.createElement("button");
+  cancelButton.classList.add("btn", "btn-secondary");
+  cancelButton.setAttribute("data-bs-dismiss", "modal");
+  cancelButton.setAttribute("type", "button");
+  cancelButton.innerText = "Cancelar";
+
+  const submitButton = document.createElement("button");
+  submitButton.classList.add("btn", "btn-primary");
+  submitButton.setAttribute("data-bs-dismiss", "modal");
+  submitButton.setAttribute("type", "submit");
+  submitButton.innerText = "Enviar";
+
+  const message = `¿Esta seguro de seleccionar a <b>${selected_candidate}</b> para votar?`;
+  const { modal } = createModal(message, [cancelButton, submitButton]);
+  modal.show();
+}
+
+function votingFinished() {
+  const message = "Haz finalizado el proceso para emitir tu voto, Gracias";
+  const { modal } = createModal(message, [], (closeButton = false));
+  modal.show();
+  setTimeout(() => {
+    modal.hide();
+  }, 5000);
+}
+
+function createModal(message, buttons, closeButton = true) {
+  const bodyModal = document.getElementById("content-modal-body");
+  const footerModal = document.getElementById("content-modal-footer");
+
+  bodyModal.innerHTML = message;
+  footerModal.innerHTML = "";
+  buttons.forEach((button) => {
+    footerModal.appendChild(button);
+  });
+
+  if (!closeButton) {
+    document.getElementById("btn-close-modal").style.display = "none";
+  }
+
+  const containerModal = document.getElementById("modal_alert");
+  const modal = new bootstrap.Modal(containerModal);
+  return { modal };
+}
 
 btn_vote.addEventListener("click", () => {
-  let radios = document.getElementsByName("selected_candidate");
-  let is_any_radio_selected = false;
-  let selected_candidate = "";
+  const { selected_candidate } = getCheckedCandidate();
 
-  // Check if any radio button is selected
-  for (let i = 0; i < radios.length && !is_any_radio_selected; i++) {
-    if (radios[i].checked) {
-      is_any_radio_selected = true;
-      selected_candidate = radios[i].dataset.candidateName;
-    }
-  }
-
-  let modal_body_message = "";
-  let modal_buttons = "";
-
-  if (!is_any_radio_selected) {
-    modal_body_message = "Seleccione un candidato";
-    modal_buttons = `<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>`;
+  if (!selected_candidate) {
+    anyCandidateChecked();
+    return;
   } else {
-    modal_body_message = `¿Esta seguro de seleccionar a <b>${selected_candidate}</b> para votar?`;
-    modal_buttons = `
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button id="btn-submit" type="button" class="btn btn-primary">Enviar</button>
-        `;
+    confirmVote(selected_candidate);
   }
-
-  document.getElementById("content-modal-body").innerHTML = modal_body_message;
-  document.getElementById("content-modal-footer").innerHTML = modal_buttons;
-
-  // Show modal
-  var myModal = new bootstrap.Modal(document.getElementById("modal_alert"));
-  myModal.show();
-
-  // Second modal
-  document.getElementById("btn-submit").addEventListener("click", () => {
-    myModal.hide();
-    
-    let secondModalBody =
-    "Haz finalizado el proceso para emitir tu voto, Gracias";
-
-    document.getElementById("btn-close-modal").style.display = "none";
-    document.getElementById("content-modal-body").innerHTML = secondModalBody;
-    document.getElementById("content-modal-footer").style.display = "none";
-    
-    var secondModal = new bootstrap.Modal(
-      document.getElementById("modal_alert")
-      );
-    document.querySelector("form").submit();
-    secondModal.show();
-
-    setTimeout(() => {
-      secondModal.hide();
-    }, 5000);
-  });
 });
-
-document.addEventListener("DOMContentLoaded", () => {
-  var candidateCards = document.querySelectorAll(".card-candidate");
-
-  candidateCards.forEach((card) => {
-    card.addEventListener("click", () => {
-      var candidateId = card.getAttribute("data-candidate");
-      document.getElementById(candidateId).checked = true;
-    });
-  });
-});
-
-function selectCandidate(selectedDiv) {
-  var cards = document.getElementsByClassName("bg-body-secondary");
-  for (var i = 0; i < cards.length; i++) {
-    cards[i].classList.remove("bg-body-secondary");
-  }
-  selectedDiv.classList.add("bg-body-secondary");
-  selectedDiv.querySelector("input").checked = true;
-}
